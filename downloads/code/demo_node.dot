@@ -1,0 +1,3 @@
+digraph G {
+    main -> main [label="我是一个节点,名字叫做main"]
+}
