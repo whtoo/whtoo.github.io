@@ -6,12 +6,12 @@
   
   <title>From 0 to X: Hexo -- 0x01 | 编译手艺人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="0%: 从0开始的Hexo流程图探险15%: Graphviz?Dot?这都是什么🧎‍♀️?digraph demo4 {     label&#x3D;;  labelloc&#x3D;t;            &#x2F;&#x2F; 标题位置 bgcolor&#x3D;white;    &#x2F;&#x2F; 背景透明  node[shape&#x3D;box];        &#x2F;&#x2F; 结点形状为方形 &#x2F;&#x2F;edge[style&#x3D;bold];  &#x2F;&#x2F; 独立出现的为结">
+  <meta name="description" content="0%: 从0开始的Hexo流程图探险15%: Graphviz?Dot?这都是什么🧎‍♀️?12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849digraph demo4 &amp;#123;	label&#x3D;&lt;&lt;B&gt;Graphviz基本组成结构&lt;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="From 0 to X: Hexo -- 0x01">
 <meta property="og:url" content="http://whtoo.github.io/2020/07/29/From-0-to-1-Graphviz/index.html">
 <meta property="og:site_name" content="编译手艺人">
-<meta property="og:description" content="0%: 从0开始的Hexo流程图探险15%: Graphviz?Dot?这都是什么🧎‍♀️?digraph demo4 {     label&#x3D;;  labelloc&#x3D;t;            &#x2F;&#x2F; 标题位置 bgcolor&#x3D;white;    &#x2F;&#x2F; 背景透明  node[shape&#x3D;box];        &#x2F;&#x2F; 结点形状为方形 &#x2F;&#x2F;edge[style&#x3D;bold];  &#x2F;&#x2F; 独立出现的为结">
+<meta property="og:description" content="0%: 从0开始的Hexo流程图探险15%: Graphviz?Dot?这都是什么🧎‍♀️?12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849digraph demo4 &amp;#123;	label&#x3D;&lt;&lt;B&gt;Graphviz基本组成结构&lt;&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-29T13:33:54.000Z">
 <meta property="article:modified_time" content="2020-08-05T01:45:24.898Z">
@@ -106,59 +106,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="0-从0开始的Hexo流程图探险"><a href="#0-从0开始的Hexo流程图探险" class="headerlink" title="0%: 从0开始的Hexo流程图探险"></a>0%: 从0开始的Hexo流程图探险</h2><h2 id="15-Graphviz-Dot-这都是什么🧎‍♀️"><a href="#15-Graphviz-Dot-这都是什么🧎‍♀️" class="headerlink" title="15%: Graphviz?Dot?这都是什么🧎‍♀️?"></a>15%: Graphviz?Dot?这都是什么🧎‍♀️?</h2><div><div class="graphviz">digraph demo4 {
-    label=<<B>Graphviz基本组成结构</B>>;
-
-<pre><code>labelloc=t;            // 标题位置
-bgcolor=white;    // 背景透明
-
-node[shape=box];        // 结点形状为方形
-//edge[style=bold];
-
-// 独立出现的为结点或属性声明, 中括号前为结点名称
-graphviz[label=&quot;Graphviz&quot;];
-
-subgraph{
-    layout[label=&quot;Layouts&quot;];
-    script[label=&quot;Script Files&quot;];
-    api[label=&quot;APIs&quot;];
-    rank=same;
-}
-
-graphviz -&gt; layout;
-graphviz -&gt; script;
-graphviz -&gt; api;
-
-// 设置子图
-api -&gt; 
-subgraph{
-    layout_etc[label=&quot;......&quot;];
-}
-
-script -&gt;
-subgraph{
-    element[label=&quot;Elements&quot;];
-    attribute[label=&quot;Attributes&quot;];
-    rank=same;
-}
-
-layout -&gt;
-subgraph{
-    layout_dot[label=&quot;dot&quot;];
-    layout_neato[label=&quot;neato&quot;];
-}
-
-element -&gt;
-subgraph{
-    ele_graph[label=&quot;Graph&quot;];
-    ele_node[label=&quot;Node&quot;];
-    ele_edge[label=&quot;Edge&quot;];
-}</code></pre><p>}</div></div></p>
-
+        <h2 id="0-从0开始的Hexo流程图探险"><a href="#0-从0开始的Hexo流程图探险" class="headerlink" title="0%: 从0开始的Hexo流程图探险"></a>0%: 从0开始的Hexo流程图探险</h2><h2 id="15-Graphviz-Dot-这都是什么🧎‍♀️"><a href="#15-Graphviz-Dot-这都是什么🧎‍♀️" class="headerlink" title="15%: Graphviz?Dot?这都是什么🧎‍♀️?"></a>15%: Graphviz?Dot?这都是什么🧎‍♀️?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">digraph demo4 &#123;</span><br><span class="line">	label&#x3D;&lt;&lt;B&gt;Graphviz基本组成结构&lt;&#x2F;B&gt;&gt;;</span><br><span class="line"></span><br><span class="line">    labelloc&#x3D;t;			&#x2F;&#x2F; 标题位置</span><br><span class="line">    bgcolor&#x3D;white;	&#x2F;&#x2F; 背景透明</span><br><span class="line">    </span><br><span class="line">    node[shape&#x3D;box];		&#x2F;&#x2F; 结点形状为方形</span><br><span class="line">    &#x2F;&#x2F;edge[style&#x3D;bold];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 独立出现的为结点或属性声明, 中括号前为结点名称</span><br><span class="line">    graphviz[label&#x3D;&quot;Graphviz&quot;];</span><br><span class="line">    </span><br><span class="line">    subgraph&#123;</span><br><span class="line">        layout[label&#x3D;&quot;Layouts&quot;];</span><br><span class="line">        script[label&#x3D;&quot;Script Files&quot;];</span><br><span class="line">        api[label&#x3D;&quot;APIs&quot;];</span><br><span class="line">        rank&#x3D;same;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    graphviz -&gt; layout;</span><br><span class="line">    graphviz -&gt; script;</span><br><span class="line">    graphviz -&gt; api;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 设置子图</span><br><span class="line">    api -&gt; </span><br><span class="line">    subgraph&#123;</span><br><span class="line">	    layout_etc[label&#x3D;&quot;......&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    script -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        element[label&#x3D;&quot;Elements&quot;];</span><br><span class="line">        attribute[label&#x3D;&quot;Attributes&quot;];</span><br><span class="line">        rank&#x3D;same;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    layout -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        layout_dot[label&#x3D;&quot;dot&quot;];</span><br><span class="line">        layout_neato[label&#x3D;&quot;neato&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    element -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        ele_graph[label&#x3D;&quot;Graph&quot;];</span><br><span class="line">        ele_node[label&#x3D;&quot;Node&quot;];</span><br><span class="line">        ele_edge[label&#x3D;&quot;Edge&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://whtoo.github.io/2020/07/29/From-0-to-1-Graphviz/" data-id="ckn5um9j50000wbuldvgtelw5" data-title="From 0 to X: Hexo -- 0x01" class="article-share-link">Share</a>
+      <a data-url="http://whtoo.github.io/2020/07/29/From-0-to-1-Graphviz/" data-id="cknb4ghrb00016kulhxdwa4tp" data-title="From 0 to X: Hexo -- 0x01" class="article-share-link">Share</a>
       
       
       
