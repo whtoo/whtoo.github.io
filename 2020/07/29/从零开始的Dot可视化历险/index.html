@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-
   
-  <title>从零开始的Dot可视化历险 | 编程戏法师</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>从零开始的Dot可视化历险 | 编译手艺人</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="1. 基本使用实例1.1 一个C程序的内部调用图 如图1.1.a 所示 demo.dotview raw12345678910digraph G {    main -&gt; parse -&gt; execute;    main -&gt; init;    main -&gt; cleanup;    execute -&gt; make_string;    execute -&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零开始的Dot可视化历险">
 <meta property="og:url" content="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/index.html">
-<meta property="og:site_name" content="编程戏法师">
+<meta property="og:site_name" content="编译手艺人">
 <meta property="og:description" content="1. 基本使用实例1.1 一个C程序的内部调用图 如图1.1.a 所示 demo.dotview raw12345678910digraph G {    main -&gt; parse -&gt; execute;    main -&gt; init;    main -&gt; cleanup;    execute -&gt; make_string;    execute -&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo.png">
@@ -26,18 +25,25 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo.png">
   
-    <link rel="alternate" href="/atom.xml" title="编程戏法师" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="编译手艺人" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
   <div id="container">
@@ -47,11 +53,11 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">编程戏法师</a>
+        <a href="/" id="logo">编译手艺人</a>
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">门之钥</a>
+          <a href="/" id="subtitle">术之尽头</a>
         </h2>
       
     </div>
@@ -61,11 +67,7 @@
         
           <a class="main-nav-link" href="/">Home</a>
         
-          <a class="main-nav-link" href="/about">About</a>
-        
           <a class="main-nav-link" href="/archives">Archives</a>
-        
-          <a class="main-nav-link" href="/projects">Projects</a>
         
       </nav>
       <nav id="sub-nav">
@@ -80,11 +82,12 @@
     </div>
   </div>
 </header>
+
       <div class="outer">
-        <section id="main"><article id="photo-从零开始的Dot可视化历险" class="article article-type-photo" itemscope itemprop="blogPost">
+        <section id="main"><article id="photo-从零开始的Dot可视化历险" class="h-entry article article-type-photo" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/" class="article-date">
-  <time datetime="2020-07-29T06:13:53.000Z" itemprop="datePublished">2020-07-29</time>
+  <time class="dt-published" datetime="2020-07-29T06:13:53.000Z" itemprop="datePublished">2020-07-29</time>
 </a>
     
   </div>
@@ -94,14 +97,14 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
+    <h1 class="p-name article-title" itemprop="headline name">
       从零开始的Dot可视化历险
     </h1>
   
 
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="1-基本使用实例"><a href="#1-基本使用实例" class="headerlink" title="1. 基本使用实例"></a>1. 基本使用实例</h2><h3 id="1-1-一个C程序的内部调用图"><a href="#1-1-一个C程序的内部调用图" class="headerlink" title="1.1 一个C程序的内部调用图"></a>1.1 一个C程序的内部调用图</h3><img src="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo.png" class="" title="关于C调用程序的图示">
 <p><code>如图1.1.a 所示</code></p>
@@ -117,7 +120,8 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/" data-id="ckn5um9je0007wbul662oe1av" class="article-share-link">Share</a>
+      <a data-url="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/" data-id="ckn5um9je0007wbul662oe1av" data-title="从零开始的Dot可视化历险" class="article-share-link">Share</a>
+      
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOT/" rel="tag">DOT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tutorial/" rel="tag">Tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visualization/" rel="tag">Visualization</a></li></ul>
@@ -142,6 +146,7 @@
 
   
 </article>
+
 
 </section>
         
@@ -224,60 +229,36 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
+      
       &copy; 2021 Arthur Blitz<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/about" class="mobile-nav-link">About</a>
-  
     <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/projects" class="mobile-nav-link">Projects</a>
   
 </nav>
     
 
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.7.1/viz.js'></script>
-  <script>
-    String.prototype.replaceAll = function(search, replacement) {
-      var target = this;
-      return target.split(search).join(replacement);
-    };
+<script src="/js/jquery-3.4.1.min.js"></script>
 
-    let vizObjects = document.querySelectorAll('.graphviz')
-
-    for (let item of vizObjects) {
-      let svg = undefined
-      try {
-        svg = Viz(item.textContent.replaceAll('–', '--'), 'svg')
-      } catch(e) {
-        svg = `<pre class="error">${e}</pre>`
-      }
-      item.outerHTML = svg
-    }
-  </script>
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
+
 
 
 
