@@ -6,15 +6,15 @@
   
   <title>FRP的总结 | 编译手艺人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="这是一个编译全栈应用的万花筒">
+  <meta name="description" content="前言我本来是想先写完上一篇《基于sodium的FRP解析》，再来编写这篇文章。但是，经过我的debug和trace，以及我之前使用reactivecocoa和bacon.js的经验。我决定还是先写本文来建立FRP的基本概念框架和基础实现路线图。毕竟，我的目的是让我自己掌握建立FRP系统的基本概念和技术，有了这些基础就能定制化开发我需要的框架。 全局鸟瞰  增加subscriber、observab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FRP的总结">
 <meta property="og:url" content="http://whtoo.github.io/2021/04/10/FRP%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="编译手艺人">
-<meta property="og:description" content="这是一个编译全栈应用的万花筒">
+<meta property="og:description" content="前言我本来是想先写完上一篇《基于sodium的FRP解析》，再来编写这篇文章。但是，经过我的debug和trace，以及我之前使用reactivecocoa和bacon.js的经验。我决定还是先写本文来建立FRP的基本概念框架和基础实现路线图。毕竟，我的目的是让我自己掌握建立FRP系统的基本概念和技术，有了这些基础就能定制化开发我需要的框架。 全局鸟瞰  增加subscriber、observab">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-10T01:22:48.000Z">
-<meta property="article:modified_time" content="2021-04-10T01:22:48.940Z">
+<meta property="article:modified_time" content="2021-04-12T01:10:03.322Z">
 <meta property="article:author" content="Arthur Blitz">
 <meta property="article:tag" content="Compiler, Programming Language,Compilation">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我本来是想先写完上一篇<a href="%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90.md">《基于sodium的FRP解析》</a>，再来编写这篇文章。但是，经过我的debug和trace，以及我之前使用<code>reactivecocoa</code>和<code>bacon.js</code>的经验。我决定还是先写本文来建立<em>FRP</em>的基本概念框架和基础实现路线图。毕竟，我的目的是让我自己掌握建立FRP系统的基本<br>概念和技术，有了这些基础就能定制化开发我需要的框架。</p>
+<h2 id="全局鸟瞰"><a href="#全局鸟瞰" class="headerlink" title="全局鸟瞰"></a>全局鸟瞰</h2><ul>
+<li><input disabled="" type="checkbox"> 增加subscriber、observable、subscription、stream等的概念图。</li>
+<li><input disabled="" type="checkbox"> 给出所有关键概念对应的实体的接口设计，以及职责描述</li>
+<li><input disabled="" type="checkbox"> 以rx.js为例给出关键实体的数据流分析</li>
+</ul>
+<h2 id="简化实现"><a href="#简化实现" class="headerlink" title="简化实现"></a>简化实现</h2><h3 id="实体-概念对应关系"><a href="#实体-概念对应关系" class="headerlink" title="实体-概念对应关系"></a>实体-概念对应关系</h3><h3 id="实体与接口"><a href="#实体与接口" class="headerlink" title="实体与接口"></a>实体与接口</h3><h3 id="是否引入事务性机制（inspired-by-sodium"><a href="#是否引入事务性机制（inspired-by-sodium" class="headerlink" title="是否引入事务性机制（inspired by sodium)"></a>是否引入事务性机制（inspired by sodium)</h3><h3 id="关键实现代码剖析"><a href="#关键实现代码剖析" class="headerlink" title="关键实现代码剖析"></a>关键实现代码剖析</h3><h2 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h2><p>我先用rx.js实验，然后使用我的实现去逐步替换。</p>
+<h3 id="坦克大战（基于我过去的一个2d项目）"><a href="#坦克大战（基于我过去的一个2d项目）" class="headerlink" title="坦克大战（基于我过去的一个2d项目）"></a>坦克大战（基于我过去的一个2d项目）</h3>
       
     </div>
     <footer class="article-footer">

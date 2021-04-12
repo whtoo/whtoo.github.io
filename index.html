@@ -146,7 +146,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我本来是想先写完上一篇<a href="%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90.md">《基于sodium的FRP解析》</a>，再来编写这篇文章。但是，经过我的debug和trace，以及我之前使用<code>reactivecocoa</code>和<code>bacon.js</code>的经验。我决定还是先写本文来建立<em>FRP</em>的基本概念框架和基础实现路线图。毕竟，我的目的是让我自己掌握建立FRP系统的基本<br>概念和技术，有了这些基础就能定制化开发我需要的框架。</p>
+<h2 id="全局鸟瞰"><a href="#全局鸟瞰" class="headerlink" title="全局鸟瞰"></a>全局鸟瞰</h2><ul>
+<li><input disabled="" type="checkbox"> 增加subscriber、observable、subscription、stream等的概念图。</li>
+<li><input disabled="" type="checkbox"> 给出所有关键概念对应的实体的接口设计，以及职责描述</li>
+<li><input disabled="" type="checkbox"> 以rx.js为例给出关键实体的数据流分析</li>
+</ul>
+<h2 id="简化实现"><a href="#简化实现" class="headerlink" title="简化实现"></a>简化实现</h2><h3 id="实体-概念对应关系"><a href="#实体-概念对应关系" class="headerlink" title="实体-概念对应关系"></a>实体-概念对应关系</h3><h3 id="实体与接口"><a href="#实体与接口" class="headerlink" title="实体与接口"></a>实体与接口</h3><h3 id="是否引入事务性机制（inspired-by-sodium"><a href="#是否引入事务性机制（inspired-by-sodium" class="headerlink" title="是否引入事务性机制（inspired by sodium)"></a>是否引入事务性机制（inspired by sodium)</h3><h3 id="关键实现代码剖析"><a href="#关键实现代码剖析" class="headerlink" title="关键实现代码剖析"></a>关键实现代码剖析</h3><h2 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h2><p>我先用rx.js实验，然后使用我的实现去逐步替换。</p>
+<h3 id="坦克大战（基于我过去的一个2d项目）"><a href="#坦克大战（基于我过去的一个2d项目）" class="headerlink" title="坦克大战（基于我过去的一个2d项目）"></a>坦克大战（基于我过去的一个2d项目）</h3>
       
     </div>
     <footer class="article-footer">
@@ -187,7 +194,43 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为什么要写这篇日志？因为，我觉得有必要将这个问题（<code>FRP</code>）整理为一个有完整体系结构的<em>知识集</em>。</p>
 <p>基于此，日志的格式和内容将是非常<strong>个人化</strong>的。因为，它主要是为了解决我自己的<em>知识管理</em>和<em>技术总结</em>而</p>
 <p>形成的日志。</p>
-<h2 id="全局概览"><a href="#全局概览" class="headerlink" title="全局概览"></a>全局概览</h2>
+<h2 id="全局概览"><a href="#全局概览" class="headerlink" title="全局概览"></a>全局概览</h2><h3 id="类层次关系"><a href="#类层次关系" class="headerlink" title="类层次关系"></a>类层次关系</h3><img src="/2021/04/10/%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90/class-graph.png" class="" title="类层次结构">
+
+<h3 id="与Rx的大致对应（不准确）"><a href="#与Rx的大致对应（不准确）" class="headerlink" title="与Rx的大致对应（不准确）"></a>与Rx的大致对应（不准确）</h3><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>rx.js</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cell</td>
+<td>Rx.BehaviourSubject</td>
+<td>表示被观察的会变化的值的容器(cache line of data)</td>
+</tr>
+<tr>
+<td>Lazy&lt;A&gt;</td>
+<td>-</td>
+<td>对值类型A进行thunk的容器</td>
+</tr>
+<tr>
+<td>Listener</td>
+<td>-</td>
+<td>监听函数容器</td>
+</tr>
+<tr>
+<td>Stream&lt;A&gt;</td>
+<td>Rx.Observable</td>
+<td>值的变化瞬时传递管道</td>
+</tr>
+<tr>
+<td>Transaction&lt;A&gt;</td>
+<td>-</td>
+<td>Emitter的容器(closure simulator)</td>
+</tr>
+</tbody></table>
+<h3 id="模拟场景说明"><a href="#模拟场景说明" class="headerlink" title="模拟场景说明"></a>模拟场景说明</h3>
       
     </div>
     <footer class="article-footer">

@@ -6,18 +6,20 @@
   
   <title>基于sodium的FRP解析 | 编译手艺人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前言为什么要写这篇日志？因为，我觉得有必要将这个问题（FRP）整理为一个有完整体系结构的知识集。 基于此，日志的格式和内容将是非常个人化的。因为，它主要是为了解决我自己的知识管理和技术总结而 形成的日志。 全局概览">
+  <meta name="description" content="前言为什么要写这篇日志？因为，我觉得有必要将这个问题（FRP）整理为一个有完整体系结构的知识集。 基于此，日志的格式和内容将是非常个人化的。因为，它主要是为了解决我自己的知识管理和技术总结而 形成的日志。 全局概览类层次关系  与Rx的大致对应（不准确）   类名 rx.js 说明    Cell Rx.BehaviourSubject 表示被观察的会变化的值的容器(cache line of d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于sodium的FRP解析">
 <meta property="og:url" content="http://whtoo.github.io/2021/04/10/%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="编译手艺人">
-<meta property="og:description" content="前言为什么要写这篇日志？因为，我觉得有必要将这个问题（FRP）整理为一个有完整体系结构的知识集。 基于此，日志的格式和内容将是非常个人化的。因为，它主要是为了解决我自己的知识管理和技术总结而 形成的日志。 全局概览">
+<meta property="og:description" content="前言为什么要写这篇日志？因为，我觉得有必要将这个问题（FRP）整理为一个有完整体系结构的知识集。 基于此，日志的格式和内容将是非常个人化的。因为，它主要是为了解决我自己的知识管理和技术总结而 形成的日志。 全局概览类层次关系  与Rx的大致对应（不准确）   类名 rx.js 说明    Cell Rx.BehaviourSubject 表示被观察的会变化的值的容器(cache line of d">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://whtoo.github.io/2021/04/10/%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90/class-graph.png">
 <meta property="article:published_time" content="2021-04-10T01:14:12.000Z">
-<meta property="article:modified_time" content="2021-04-10T01:17:27.609Z">
+<meta property="article:modified_time" content="2021-04-11T12:52:56.881Z">
 <meta property="article:author" content="Arthur Blitz">
 <meta property="article:tag" content="Compiler, Programming Language,Compilation">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://whtoo.github.io/2021/04/10/%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90/class-graph.png">
   
     <link rel="alternate" href="/atom.xml" title="编译手艺人" type="application/atom+xml">
   
@@ -103,7 +105,43 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为什么要写这篇日志？因为，我觉得有必要将这个问题（<code>FRP</code>）整理为一个有完整体系结构的<em>知识集</em>。</p>
 <p>基于此，日志的格式和内容将是非常<strong>个人化</strong>的。因为，它主要是为了解决我自己的<em>知识管理</em>和<em>技术总结</em>而</p>
 <p>形成的日志。</p>
-<h2 id="全局概览"><a href="#全局概览" class="headerlink" title="全局概览"></a>全局概览</h2>
+<h2 id="全局概览"><a href="#全局概览" class="headerlink" title="全局概览"></a>全局概览</h2><h3 id="类层次关系"><a href="#类层次关系" class="headerlink" title="类层次关系"></a>类层次关系</h3><img src="/2021/04/10/%E5%9F%BA%E4%BA%8Esodium%E7%9A%84FRP%E8%A7%A3%E6%9E%90/class-graph.png" class="" title="类层次结构">
+
+<h3 id="与Rx的大致对应（不准确）"><a href="#与Rx的大致对应（不准确）" class="headerlink" title="与Rx的大致对应（不准确）"></a>与Rx的大致对应（不准确）</h3><table>
+<thead>
+<tr>
+<th>类名</th>
+<th>rx.js</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cell</td>
+<td>Rx.BehaviourSubject</td>
+<td>表示被观察的会变化的值的容器(cache line of data)</td>
+</tr>
+<tr>
+<td>Lazy&lt;A&gt;</td>
+<td>-</td>
+<td>对值类型A进行thunk的容器</td>
+</tr>
+<tr>
+<td>Listener</td>
+<td>-</td>
+<td>监听函数容器</td>
+</tr>
+<tr>
+<td>Stream&lt;A&gt;</td>
+<td>Rx.Observable</td>
+<td>值的变化瞬时传递管道</td>
+</tr>
+<tr>
+<td>Transaction&lt;A&gt;</td>
+<td>-</td>
+<td>Emitter的容器(closure simulator)</td>
+</tr>
+</tbody></table>
+<h3 id="模拟场景说明"><a href="#模拟场景说明" class="headerlink" title="模拟场景说明"></a>模拟场景说明</h3>
       
     </div>
     <footer class="article-footer">
