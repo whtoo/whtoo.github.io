@@ -78,9 +78,51 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-如何实现一个解释器-in-Racket" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-0x07-如何实现一个解释器-in-Racket" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/04/21/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" class="article-date">
+    <a href="/2021/04/21/0x07-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" class="article-date">
+  <time class="dt-published" datetime="2021-04-21T11:12:01.000Z" itemprop="datePublished">2021-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/21/0x07-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">0x07.如何实现一个解释器 in Racket</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="可变量的结构与表示"><a href="#可变量的结构与表示" class="headerlink" title="可变量的结构与表示"></a>可变量的结构与表示</h1><h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">0.1</span>;</span><br><span class="line">Person p1 = <span class="keyword">new</span> Person(<span class="string">&quot;Jackson&quot;</span>);</span><br><span class="line">p1.salary = <span class="number">100000</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何实现上述语义呢？"><a href="#如何实现上述语义呢？" class="headerlink" title="如何实现上述语义呢？"></a>如何实现上述语义呢？</h3><h4 id="盒子里的变量"><a href="#盒子里的变量" class="headerlink" title="盒子里的变量"></a>盒子里的变量</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">      <span class="keyword">private</span> T the_value;</span><br><span class="line">      Box(T v) &#123;</span><br><span class="line">          <span class="keyword">this</span>.the_value = v;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function">T <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> the_value;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(T v)</span> </span>&#123;</span><br><span class="line">          the_value = v;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://whtoo.github.io/2021/04/21/0x07-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" data-id="cknrd5eie0001e6ul9egcan99" data-title="0x07.如何实现一个解释器 in Racket" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-0x06.如何实现一个解释器-in-Racket" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/21/0x06.%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" class="article-date">
   <time class="dt-published" datetime="2021-04-21T01:55:28.000Z" itemprop="datePublished">2021-04-21</time>
 </a>
     
@@ -92,7 +134,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/04/21/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">如何实现一个解释器 in Racket</a>
+      <a class="p-name article-title" href="/2021/04/21/0x06.%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">0x06.如何实现一个解释器 in Racket</a>
     </h1>
   
 
@@ -106,15 +148,36 @@
 <li><input checked="" disabled="" type="checkbox"> Implement lookup in environment</li>
 </ul>
 <h2 id="codes"><a href="#codes" class="headerlink" title="codes"></a>codes</h2><ol>
-<li>Define a environment as list.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define-type Binding</span><br><span class="line">  [bind (name : symbol) (val : number)])</span><br><span class="line">(define-type-alias Env (listof Binding))</span><br></pre></td></tr></table></figure></li>
-<li>Implement lookup in environment<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">; DONE : Define lookup</span><br><span class="line">(define (lookup [for : symbol] [env : Env]) : number</span><br><span class="line">  (cond</span><br><span class="line">    [(empty? env) (error &#39;lookup &quot;name not found&quot;)]</span><br><span class="line">    [else (cond</span><br><span class="line">            [(symbol&#x3D;? for (bind-name (first env)))</span><br><span class="line">             (bind-val (first env))]</span><br><span class="line">            [else (lookup for (rest env))])]))</span><br></pre></td></tr></table></figure></li>
-<li>Substitution VS Env(1st version)</li>
+<li><p>Define a environment as list.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define-type Binding</span><br><span class="line">  [bind (name : symbol) (val : number)])</span><br><span class="line">(define-type-alias Env (listof Binding))</span><br></pre></td></tr></table></figure></li>
+<li><p>Implement lookup in environment</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">; DONE : Define lookup</span><br><span class="line">(define (lookup [for : symbol] [env : Env]) : number</span><br><span class="line">  (cond</span><br><span class="line">    [(empty? env) (error &#39;lookup &quot;name not found&quot;)]</span><br><span class="line">    [else (cond</span><br><span class="line">            [(symbol&#x3D;? for (bind-name (first env)))</span><br><span class="line">             (bind-val (first env))]</span><br><span class="line">            [else (lookup for (rest env))])]))</span><br></pre></td></tr></table></figure></li>
+<li><p>Substitution VS Env(1st version)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; Error case in our implementation of Env 1st.</span><br><span class="line">; Our test case equal to</span><br><span class="line">; (define (f1 x) (f2 4))</span><br><span class="line">; (define (f2 y) (+ x y))</span><br><span class="line">; (f1 3)</span><br><span class="line">; If we take a look, we will find error binding that x </span><br><span class="line">; is not binded in f2&#39;s definition.</span><br><span class="line">(interp (appC &#39;f1 (numC 3))</span><br><span class="line">                    mt-env</span><br><span class="line">                    (list (fdC &#39;f1 &#39;x (appC &#39;f2 (numC 4)))</span><br><span class="line">                          (fdC &#39;f2 &#39;y (plusC (idC &#39;x) (idC &#39;y)))))</span><br></pre></td></tr></table></figure></li>
+<li><p>detect error occus</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; env cross scope</span><br><span class="line">&lt;appC-interp-bind-in-env&gt;</span><br><span class="line">                         (extend-env (bind (fdC-arg fd)</span><br><span class="line">                                           (interp a env fds))</span><br><span class="line">                                     env)</span><br></pre></td></tr></table></figure></li>
+<li><p>Corret last error binding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">; change env to mt-env</span><br><span class="line">&lt;appC-interp-bind-in-env&gt;</span><br><span class="line">                         (extend-env (bind (fdC-arg fd)</span><br><span class="line">                                           (interp a env fds))</span><br><span class="line">                                     mt-env)</span><br></pre></td></tr></table></figure></li>
+<li><p>Scope in 3 terms</p>
+</li>
+<li><ol>
+<li>Is it bound?</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(interp (appC &#39;f1 (numC 3))</span><br><span class="line">                    mt-env</span><br><span class="line">                    (list (fdC &#39;f1 &#39;x (appC &#39;f2 (numC 4)))</span><br><span class="line">                          (fdC &#39;f2 &#39;y (plusC (idC &#39;x) (idC &#39;y)))))</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="2">
+<li>where?</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Does it has parent scope?</li>
+</ol>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://whtoo.github.io/2021/04/21/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" data-id="cknqu7qjv0000jlulfcyr8eep" data-title="如何实现一个解释器 in Racket" class="article-share-link">Share</a>
+      <a data-url="http://whtoo.github.io/2021/04/21/0x06.%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/" data-id="cknrd5eic0000e6ulbegm2giz" data-title="0x06.如何实现一个解释器 in Racket" class="article-share-link">Share</a>
       
       
       
@@ -623,57 +686,12 @@
 
 
   
-    <article id="photo-从零开始的Dot可视化历险" class="h-entry article article-type-photo" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/" class="article-date">
-  <time class="dt-published" datetime="2020-07-29T06:13:53.000Z" itemprop="datePublished">2020-07-29</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/">从零开始的Dot可视化历险</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-基本使用实例"><a href="#1-基本使用实例" class="headerlink" title="1. 基本使用实例"></a>1. 基本使用实例</h2><h3 id="1-1-一个C程序的内部调用图"><a href="#1-1-一个C程序的内部调用图" class="headerlink" title="1.1 一个C程序的内部调用图"></a>1.1 一个C程序的内部调用图</h3><img src="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo.png" class="" title="关于C调用程序的图示">
-<p><code>如图1.1.a 所示</code></p>
-<figure class="highlight plain"><figcaption><span>demo.dot</span><a href="/downloads/code/demo.dot">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">digraph G {</span><br><span class="line">    main -&gt; parse -&gt; execute;</span><br><span class="line">    main -&gt; init;</span><br><span class="line">    main -&gt; cleanup;</span><br><span class="line">    execute -&gt; make_string;</span><br><span class="line">    execute -&gt; printf;</span><br><span class="line">    init -&gt; make_string;</span><br><span class="line">    main -&gt; printf;</span><br><span class="line">    execute -&gt; compare;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<hr>
-<img src="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo_enhace.png" class="" title="关于C调用程序的图示">
-<p><code>如图1.1.b 所示</code></p>
-<figure class="highlight plain"><figcaption><span>demo_enhance.dot</span><a href="/downloads/code/demo_enhance.dot">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">digraph G {</span><br><span class="line">    size &#x3D; &quot;4,4&quot;;</span><br><span class="line">    main [shape&#x3D;box]; &#x2F;* this is  a comment*&#x2F;</span><br><span class="line">    main -&gt; parse [weight&#x3D;8];</span><br><span class="line">    parse -&gt; execute;</span><br><span class="line">    main -&gt; init [style&#x3D;dotted];</span><br><span class="line">    main -&gt; cleanup;</span><br><span class="line">    execute -&gt; { make_string; printf };</span><br><span class="line">    init -&gt; make_string;</span><br><span class="line">    edge [color&#x3D;red];</span><br><span class="line">    main -&gt; printf [style&#x3D;bold,label&#x3D;&quot;100 times&quot;];</span><br><span class="line">    make_string [label&#x3D;&quot;make a\nstring&quot;];</span><br><span class="line">    node [shape&#x3D;box,style&#x3D;filled,color&#x3D;&quot;.7,.3,1.0&quot;];</span><br><span class="line">    execute -&gt; compare;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-从基本结构开始探险"><a href="#2-从基本结构开始探险" class="headerlink" title="2. 从基本结构开始探险"></a>2. 从基本结构开始探险</h2><h3 id="2-1-Node"><a href="#2-1-Node" class="headerlink" title="2.1 Node"></a>2.1 Node</h3><img src="/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/demo_main_node.png" class="" title="main node">
-<p><code>如图 2.1.a 所示</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">diagraph G &#123;</span><br><span class="line">    main [label&#x3D;&quot;我是一个☝️节点,名字叫做main&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://whtoo.github.io/2020/07/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Dot%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8E%86%E9%99%A9/" data-id="ckni603mn000chmul1o4g82ju" data-title="从零开始的Dot可视化历险" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOT/" rel="tag">DOT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tutorial/" rel="tag">Tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visualization/" rel="tag">Visualization</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -725,7 +743,11 @@
       <ul>
         
           <li>
-            <a href="/2021/04/21/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">如何实现一个解释器 in Racket</a>
+            <a href="/2021/04/21/0x07-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">0x07.如何实现一个解释器 in Racket</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/21/0x06.%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%A7%A3%E9%87%8A%E5%99%A8-in-Racket/">0x06.如何实现一个解释器 in Racket</a>
           </li>
         
           <li>
@@ -738,10 +760,6 @@
         
           <li>
             <a href="/2021/04/10/Macos%E6%88%AA%E5%B1%8F%E5%BF%AB%E6%8D%B7%E9%94%AE/">Macos截屏快捷键</a>
-          </li>
-        
-          <li>
-            <a href="/2021/04/10/FRP%E7%9A%84%E6%80%BB%E7%BB%93/">FRP的总结</a>
           </li>
         
       </ul>
