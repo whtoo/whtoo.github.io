@@ -1,0 +1,7 @@
+* { margin:0; padding:0; } /* to remove the top and left whitespace */
+
+html, body { width:100%; height:100%; } /* just to be sure these are full screen*/
+
+canvas { display:block; } /* To remove the scrollbars */
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9qc190YW5rX2dhbWUvLi9jc3MvbWFpbi5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsSUFBSSxRQUFRLEVBQUUsU0FBUyxFQUFFLEVBQUUsMENBQTBDOztBQUVyRSxhQUFhLFVBQVUsRUFBRSxXQUFXLEVBQUUsRUFBRSx5Q0FBeUM7O0FBRWpGLFNBQVMsYUFBYSxFQUFFLEVBQUUsNkJBQTZCLEMiLCJmaWxlIjoiZ2FtZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIqIHsgbWFyZ2luOjA7IHBhZGRpbmc6MDsgfSAvKiB0byByZW1vdmUgdGhlIHRvcCBhbmQgbGVmdCB3aGl0ZXNwYWNlICovXG5cbmh0bWwsIGJvZHkgeyB3aWR0aDoxMDAlOyBoZWlnaHQ6MTAwJTsgfSAvKiBqdXN0IHRvIGJlIHN1cmUgdGhlc2UgYXJlIGZ1bGwgc2NyZWVuKi9cblxuY2FudmFzIHsgZGlzcGxheTpibG9jazsgfSAvKiBUbyByZW1vdmUgdGhlIHNjcm9sbGJhcnMgKi8iXSwic291cmNlUm9vdCI6IiJ9*/
