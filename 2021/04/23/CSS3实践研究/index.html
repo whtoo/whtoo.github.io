@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>CSS3实践研究 | 编译手艺人</title>
+  <title>CSS3实践研究笔记 | 编译手艺人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1. 拥抱流布局 布局(layout) 响应式与媒体查询 flexible box layout grid layout   视觉表现 corner、shadow、progressive transform fitler animatation    2. 术语12345.track-item &amp;#123;    width: 480px;    height : 640px;    color">
+  <meta name="description" content="前言以下所有内容来自我对&lt;&lt;CSS世界&gt;&gt;的摘录和总结，感谢原作者辛苦著书。 1. 拥抱流布局 布局(layout) 响应式与媒体查询 flexible box layout grid layout   视觉表现 corner、shadow、progressive transform fitler animatation    2. 术语12345.track-item &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS3实践研究">
+<meta property="og:title" content="CSS3实践研究笔记">
 <meta property="og:url" content="http://whtoo.github.io/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/index.html">
 <meta property="og:site_name" content="编译手艺人">
-<meta property="og:description" content="1. 拥抱流布局 布局(layout) 响应式与媒体查询 flexible box layout grid layout   视觉表现 corner、shadow、progressive transform fitler animatation    2. 术语12345.track-item &amp;#123;    width: 480px;    height : 640px;    color">
+<meta property="og:description" content="前言以下所有内容来自我对&lt;&lt;CSS世界&gt;&gt;的摘录和总结，感谢原作者辛苦著书。 1. 拥抱流布局 布局(layout) 响应式与媒体查询 flexible box layout grid layout   视觉表现 corner、shadow、progressive transform fitler animatation    2. 术语12345.track-item &amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-23T03:45:33.000Z">
-<meta property="article:modified_time" content="2021-04-23T04:42:14.524Z">
+<meta property="article:modified_time" content="2021-04-23T08:17:08.601Z">
 <meta property="article:author" content="Arthur Blitz">
 <meta property="article:tag" content="Compiler, Programming Language,Compilation">
 <meta name="twitter:card" content="summary">
@@ -92,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      CSS3实践研究
+      CSS3实践研究笔记
     </h1>
   
 
@@ -100,7 +100,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="1-拥抱流布局"><a href="#1-拥抱流布局" class="headerlink" title="1. 拥抱流布局"></a>1. 拥抱流布局</h1><ol>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>以下所有内容来自我对<code>&lt;&lt;CSS世界&gt;&gt;</code>的摘录和总结，感谢原作者辛苦著书。</p>
+<h1 id="1-拥抱流布局"><a href="#1-拥抱流布局" class="headerlink" title="1. 拥抱流布局"></a>1. 拥抱流布局</h1><ol>
 <li>布局(layout)<ol>
 <li>响应式与媒体查询</li>
 <li>flexible box layout</li>
@@ -229,7 +230,9 @@
 </tr>
 </tbody></table>
 <p>一个水平流上只能单独显示一个元素，多个块级元素则换行显示。<br>正是由于<code>块级元素</code>具有换行特性，因此理论上它都可以配合clear属性<br>来清除浮动带来的影响。</p>
-<h3 id="简化layout解释"><a href="#简化layout解释" class="headerlink" title="简化layout解释"></a>简化layout解释</h3><table>
+<h3 id="简化layout解释"><a href="#简化layout解释" class="headerlink" title="简化layout解释"></a>简化layout解释</h3><p>a. 不考虑list-item的情况下<br>| 盒子 | 职责 |<br>| - | - |<br>| <code>block-level box</code> | 结构 |<br>| <code>inline box</code> | 内容 |</p>
+<p>b. 考虑list-item当前情况下</p>
+<table>
 <thead>
 <tr>
 <th>盒子</th>
@@ -238,18 +241,48 @@
 </thead>
 <tbody><tr>
 <td><code>block-level box</code></td>
-<td>结构</td>
+<td>主块级盒子</td>
 </tr>
 <tr>
 <td><code>inline box</code></td>
 <td>内容</td>
 </tr>
+<tr>
+<td><code>list-item</code></td>
+<td>附加盒子</td>
+</tr>
 </tbody></table>
+<p>c. inline-block加入战场</p>
+<table>
+<thead>
+<tr>
+<th>盒子</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>block-level box</code></td>
+<td>主块级盒子</td>
+</tr>
+<tr>
+<td><code>inline box</code></td>
+<td>内容</td>
+</tr>
+<tr>
+<td><code>list-item</code></td>
+<td>附加盒子</td>
+</tr>
+<tr>
+<td><code>inline-block</code></td>
+<td>容器盒子</td>
+</tr>
+</tbody></table>
+<p>d. 可视化盒模型</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://whtoo.github.io/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/" data-id="cknttwxga0000bhul3yzj9y9t" data-title="CSS3实践研究" class="article-share-link">Share</a>
+      <a data-url="http://whtoo.github.io/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/" data-id="cknttwxga0000bhul3yzj9y9t" data-title="CSS3实践研究笔记" class="article-share-link">Share</a>
       
       
       
@@ -321,7 +354,7 @@
       <ul>
         
           <li>
-            <a href="/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/">CSS3实践研究</a>
+            <a href="/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/">CSS3实践研究笔记</a>
           </li>
         
           <li>
