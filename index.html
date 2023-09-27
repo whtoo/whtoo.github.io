@@ -149,6 +149,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-cn">
+    <link itemprop="mainEntityOfPage" href="http://whtoo.github.io/2023/09/27/%E6%B1%87%E7%BC%96%E7%A0%94%E7%A9%B6I/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Arthur Blitz">
+      <meta itemprop="description" content="这是一个编译全栈应用的万花筒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="编译手艺人">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/27/%E6%B1%87%E7%BC%96%E7%A0%94%E7%A9%B6I/" class="post-title-link" itemprop="url">汇编研究I</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-09-27 20:29:45 / Modified: 20:31:38" itemprop="dateCreated datePublished" datetime="2023-09-27T20:29:45+08:00">2023-09-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="源文件"><a href="#源文件" class="headerlink" title="源文件"></a>源文件</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span>** arg)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d + %d = %d&quot;</span>,<span class="number">1</span>,<span class="number">2</span>,add(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">	.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">	.build_version macos, 13, 0	sdk_version 13, 3</span><br><span class="line">	.globl	_add                            ## -- Begin function add</span><br><span class="line">	.p2align	4, 0x90</span><br><span class="line">_add:                                   ## @add</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb.0:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset %rbp, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	movl	%edi, -4(%rbp)</span><br><span class="line">	movl	%esi, -8(%rbp)</span><br><span class="line">	movl	-4(%rbp), %eax</span><br><span class="line">	addl	-8(%rbp), %eax</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line">	.globl	_main                           ## -- Begin function main</span><br><span class="line">	.p2align	4, 0x90</span><br><span class="line">_main:                                  ## @main</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb.0:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset %rbp, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	subq	$16, %rsp</span><br><span class="line">	movl	$0, -4(%rbp)</span><br><span class="line">	movl	%edi, -8(%rbp)</span><br><span class="line">	movq	%rsi, -16(%rbp)</span><br><span class="line">	movl	$1, %edi</span><br><span class="line">	movl	$2, %esi</span><br><span class="line">	callq	_add</span><br><span class="line">	movl	%eax, %ecx</span><br><span class="line">	leaq	L_.str(%rip), %rdi</span><br><span class="line">	movl	$1, %esi</span><br><span class="line">	movl	$2, %edx</span><br><span class="line">	movb	$0, %al</span><br><span class="line">	callq	_printf</span><br><span class="line">	xorl	%eax, %eax</span><br><span class="line">	addq	$16, %rsp</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line">	.section	__TEXT,__cstring,cstring_literals</span><br><span class="line">L_.str:                                 ## @.str</span><br><span class="line">	.asciz	&quot;%d + %d &#x3D; %d&quot;</span><br><span class="line"></span><br><span class="line">.subsections_via_symbols</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="逐行代码解析"><a href="#逐行代码解析" class="headerlink" title="逐行代码解析"></a>逐行代码解析</h2><ol>
+<li><p><code>.section __TEXT,__text,regular,pure_instructions</code>: 定义一个新的段（section），名为<code>__TEXT,__text</code>，用于存放正文（代码）；<code>regular</code>和<code>pure_instructions</code>是段的属性，表示该段包含普通的指令集和纯指令（无数据）。</p>
+</li>
+<li><p><code>.build_version macos, 13, 0 sdk_version 13, 3</code>: 声明编译的版本信息，表示此程序的目标操作系统版本为 macOS 13.0，使用的 SDK 版本为 13.3。</p>
+</li>
+<li><p><code>.globl _add</code>: 声明全局符号 <code>_add</code>，用于表示函数<code>add</code>的入口。</p>
+</li>
+<li><p><code>.p2align 4, 0x90</code>: 确保下一个指令的地址在16字节对齐位置上。</p>
+</li>
+<li><p><code>_add:</code>: 函数<code>add</code>的标签，表示函数的入口。</p>
+</li>
+<li><p><code>.cfi_startproc</code>: 声明函数的开始，用于生成调试信息。</p>
+</li>
+<li><p><code>pushq %rbp</code>: 将寄存器<code>%rbp</code>的值压入栈中，保存之前的栈帧指针。</p>
+</li>
+<li><p><code>.cfi_def_cfa_offset 16</code>: 定义栈帧指针偏移，将栈帧大小设置为16字节。</p>
+</li>
+<li><p><code>.cfi_offset %rbp, -16</code>: 定义寄存器<code>%rbp</code>的位置在栈的偏移量为-16。</p>
+</li>
+<li><p><code>movq %rsp, %rbp</code>: 将当前栈指针<code>%rsp</code>的值赋给栈帧指针<code>%rbp</code>，建立新的栈帧。</p>
+</li>
+<li><p><code>.cfi_def_cfa_register %rbp</code>: 定义新的栈帧指针寄存器为<code>%rbp</code>。</p>
+</li>
+<li><p><code>movl %edi, -4(%rbp)</code>: 将函数的第一个参数（整型）移动到栈帧中的位置，偏移量为-4。</p>
+</li>
+<li><p><code>movl %esi, -8(%rbp)</code>: 将函数的第二个参数（整型）移动到栈帧中的位置，偏移量为-8。</p>
+</li>
+<li><p><code>movl -4(%rbp), %eax</code>: 将栈帧中的第一个参数加载到通用寄存器<code>%eax</code>中。</p>
+</li>
+<li><p><code>addl -8(%rbp), %eax</code>: 将栈帧中的第二个参数与<code>%eax</code>寄存器的值相加。</p>
+</li>
+<li><p><code>popq %rbp</code>: 弹出保存的栈帧指针。</p>
+</li>
+<li><p><code>retq</code>: 返回函数，将栈帧指针弹出到程序计数器，并跳转到调用函数的位置。</p>
+</li>
+<li><p><code>.cfi_endproc</code>: 声明函数的结束，停止生成调试信息。</p>
+</li>
+<li><p><code>.globl _main</code>: 声明全局符号 <code>_main</code>，用于表示函数<code>main</code>的入口。</p>
+</li>
+<li><p><code>.p2align 4, 0x90</code>: 确保下一个指令的地址在16字节对齐位置上。</p>
+</li>
+<li><p><code>_main:</code>: 函数<code>main</code>的标签，表示函数的入口。</p>
+</li>
+<li><p><code>.cfi_startproc</code>: 声明函数的开始，用于生成调试信息。</p>
+</li>
+<li><p><code>pushq %rbp</code>: 将寄存器<code>%rbp</code>的值压入栈中，保存之前的栈帧指针。</p>
+</li>
+<li><p><code>.cfi_def_cfa_offset 16</code>: 定义栈帧指针偏移，将栈帧大小设置为16字节。</p>
+</li>
+<li><p><code>.cfi_offset %rbp, -16</code>: 定义寄存器<code>%rbp</code>的位置在栈的偏移量为-16。</p>
+</li>
+<li><p><code>movq %rsp, %rbp</code>: 将当前栈指针<code>%rsp</code>的值赋给栈帧指针<code>%rbp</code>，建立新的栈帧。</p>
+</li>
+<li><p><code>.cfi_def_cfa_register %rbp</code>: 定义新的栈帧指针寄存器为<code>%rbp</code>。</p>
+</li>
+<li><p><code>subq $16, %rsp</code>: 在栈上分配16字节的空间，为本地变量的使用而预留。</p>
+</li>
+<li><p><code>movl $0, -4(%rbp)</code>: 初始化栈帧中的一个本地变量，将值0存储在偏移量为-4的位置。</p>
+</li>
+<li><p><code>movl %edi, -8(%rbp)</code>: 将函数的第一个参数（整型）移动到栈帧中的位置，偏移量为-8。</p>
+</li>
+<li><p><code>movq %rsi, -16(%rbp)</code>: 将函数的第二个参数（整型）移动到栈帧中的位置，偏移量为-16。</p>
+</li>
+<li><p><code>movl $1, %edi</code>: 将值1存储在寄存器<code>%edi</code>中，准备作为第一个参数传递给<code>_add</code>函数。</p>
+</li>
+<li><p><code>movl $2, %esi</code>: 将值2存储在寄存器<code>%esi</code>中，准备作为第二个参数传递给<code>_add</code>函数。</p>
+</li>
+<li><p><code>callq _add</code>: 调用函数<code>_add</code>，将参数传递给它，并开始执行该函数。</p>
+</li>
+<li><p><code>movl %eax, %ecx</code>: 将<code>_add</code>函数的返回值（存储在寄存器<code>%eax</code>中）移动到寄存器<code>%ecx</code>中，准备作为参数传递给printf函数。</p>
+</li>
+<li><p><code>leaq L_.str(%rip), %rdi</code>: 将字符串L_.str的地址（存储在相对寻址中）加载到寄存器<code>%rdi</code>中，作为printf函数的第一个参数。</p>
+</li>
+<li><p><code>movl $1, %esi</code>: 将值1存储在寄存器<code>%esi</code>中，准备作为printf函数的第二个参数。</p>
+</li>
+<li><p><code>movl $2, %edx</code>: 将值2存储在寄存器<code>%edx</code>中，准备作为printf函数的第三个参数。</p>
+</li>
+<li><p><code>movb $0, %al</code>: 将值0存储在寄存器<code>%al</code>中，准备作为printf函数的第四个参数。</p>
+</li>
+<li><p><code>callq _printf</code>: 调用printf函数，将之前准备好的参数传递给它，开始执行打印操作。</p>
+</li>
+<li><p><code>xorl %eax, %eax</code>: 将寄存器<code>%eax</code>与自身进行异或操作，将结果存储回<code>%eax</code>，相当于将其清零。</p>
+</li>
+<li><p><code>addq $16, %rsp</code>: 释放之前预留的16字节的栈空间。</p>
+</li>
+<li><p><code>popq %rbp</code>: 弹出保存的栈帧指针。</p>
+</li>
+<li><p><code>retq</code>: 返回函数，将栈帧指针弹出到程序计数器，并跳转到程序的结束点。</p>
+</li>
+<li><p><code>.cfi_endproc</code>: 声明函数的结束，停止生成调试信息。</p>
+</li>
+<li><p><code>.section __TEXT,__cstring,cstring_literals</code>: 定义一个新的段（section），名为<code>__TEXT,__cstring</code>，用于存放c字符串字面量。</p>
+</li>
+<li><p><code>L_.str: .asciz &quot;%d + %d = %d&quot;</code>: 定义一个c字符串字面量<code>&quot;%d + %d = %d&quot;</code>，并使用标签<code>L_.str</code>进行引用。</p>
+</li>
+<li><p><code>.subsections_via_symbols</code>: 告诉编译器按照符号（symbol）来生成子段（subsections）。</p>
+</li>
+</ol>
+<p>以上就是汇编代码的逐行解释，希望能帮助你理解代码的功能和执行流程。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-cn">
     <link itemprop="mainEntityOfPage" href="http://whtoo.github.io/2021/04/23/CSS3%E5%AE%9E%E8%B7%B5%E7%A0%94%E7%A9%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1080,87 +1240,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-cn">
-    <link itemprop="mainEntityOfPage" href="http://whtoo.github.io/2020/07/29/From-0-to-1-Graphviz/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Arthur Blitz">
-      <meta itemprop="description" content="这是一个编译全栈应用的万花筒">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="编译手艺人">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/29/From-0-to-1-Graphviz/" class="post-title-link" itemprop="url">From 0 to X: Hexo -- 0x01</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-29 21:33:54" itemprop="dateCreated datePublished" datetime="2020-07-29T21:33:54+08:00">2020-07-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-08 21:51:56" itemprop="dateModified" datetime="2021-08-08T21:51:56+08:00">2021-08-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E7%9A%84Hexo%E6%8E%A2%E9%99%A9%F0%9F%A7%B6/" itemprop="url" rel="index"><span itemprop="name">从零开始的Hexo探险🧶</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="0-从0开始的Hexo流程图探险"><a href="#0-从0开始的Hexo流程图探险" class="headerlink" title="0%: 从0开始的Hexo流程图探险"></a>0%: 从0开始的Hexo流程图探险</h2><h2 id="15-Graphviz-Dot-这都是什么🧎‍♀️"><a href="#15-Graphviz-Dot-这都是什么🧎‍♀️" class="headerlink" title="15%: Graphviz?Dot?这都是什么🧎‍♀️?"></a>15%: Graphviz?Dot?这都是什么🧎‍♀️?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">digraph demo4 &#123;</span><br><span class="line">	label&#x3D;&lt;&lt;B&gt;Graphviz基本组成结构&lt;&#x2F;B&gt;&gt;;</span><br><span class="line"></span><br><span class="line">    labelloc&#x3D;t;			&#x2F;&#x2F; 标题位置</span><br><span class="line">    bgcolor&#x3D;white;	&#x2F;&#x2F; 背景透明</span><br><span class="line">    </span><br><span class="line">    node[shape&#x3D;box];		&#x2F;&#x2F; 结点形状为方形</span><br><span class="line">    &#x2F;&#x2F;edge[style&#x3D;bold];</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 独立出现的为结点或属性声明, 中括号前为结点名称</span><br><span class="line">    graphviz[label&#x3D;&quot;Graphviz&quot;];</span><br><span class="line">    </span><br><span class="line">    subgraph&#123;</span><br><span class="line">        layout[label&#x3D;&quot;Layouts&quot;];</span><br><span class="line">        script[label&#x3D;&quot;Script Files&quot;];</span><br><span class="line">        api[label&#x3D;&quot;APIs&quot;];</span><br><span class="line">        rank&#x3D;same;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    graphviz -&gt; layout;</span><br><span class="line">    graphviz -&gt; script;</span><br><span class="line">    graphviz -&gt; api;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 设置子图</span><br><span class="line">    api -&gt; </span><br><span class="line">    subgraph&#123;</span><br><span class="line">	    layout_etc[label&#x3D;&quot;......&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    script -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        element[label&#x3D;&quot;Elements&quot;];</span><br><span class="line">        attribute[label&#x3D;&quot;Attributes&quot;];</span><br><span class="line">        rank&#x3D;same;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    layout -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        layout_dot[label&#x3D;&quot;dot&quot;];</span><br><span class="line">        layout_neato[label&#x3D;&quot;neato&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    element -&gt;</span><br><span class="line">    subgraph&#123;</span><br><span class="line">        ele_graph[label&#x3D;&quot;Graph&quot;];</span><br><span class="line">        ele_node[label&#x3D;&quot;Node&quot;];</span><br><span class="line">        ele_edge[label&#x3D;&quot;Edge&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<dl><dt>First Term</dt><dd>This is the definition of the first term.</dd></dl><dl><dt>Second Term<br>: This is one definition of the second term.</dt><dd>This is another definition of the second term.</dd></dl>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1230,7 +1309,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1275,7 +1354,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
