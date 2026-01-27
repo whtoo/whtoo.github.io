@@ -9,7 +9,7 @@ description: "汇编语言研究"
 ---
 
 ## 源文件
-``` c
+```c
 #include <stdio.h>
 
 int add(int x,int y) {
@@ -24,7 +24,7 @@ int main(int argc,char** arg) {
 ```
 
 ## 汇编
-``` asm
+```asm
 .section__TEXT,__text,regular,pure_instructions
 .build_version macos, 13, 0sdk_version 13, 3
 .globl_add                            ## -- Begin function add
