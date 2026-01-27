@@ -8,28 +8,20 @@ test.describe('Mermaid Chart Rendering', () => {
     // Wait for page to load
     await page.waitForLoadState('networkidle');
     
-    // Check that the page contains Mermaid-related elements
-    // 1. Check for Mermaid container elements
-    const mermaidContainers = await page.locator('.mermaid').count();
-    expect(mermaidContainers).toBeGreaterThan(0);
+    // Check that the page contains Mermaid-rendered elements
+    // Mermaid charts are rendered as <img> tags with id starting with 'mermaid-'
+    const mermaidImages = await page.locator('img[id^="mermaid-"]').count();
+    expect(mermaidImages).toBeGreaterThan(0);
     
-    // 2. Check that Mermaid containers have been transformed to SVG
-    const svgElements = await page.locator('.mermaid svg').count();
-    expect(svgElements).toBeGreaterThan(0);
+    // 2. Check that Mermaid images have valid src (SVG data)
+    const firstMermaidImg = page.locator('img[id^="mermaid-"]').first();
+    const src = await firstMermaidImg.getAttribute('src');
+    expect(src).toContain('data:image/svg+xml');
     
-    // 3. Check for specific flowchart elements
-    const flowChartElements = await page.locator('.mermaid svg .flowchart').count();
-    expect(flowChartElements).toBeGreaterThan(0);
-    
-    // 4. Verify the chart has reasonable size (not 0x0)
-    const firstSvg = page.locator('.mermaid svg').first();
-    const svgBoundingBox = await firstSvg.boundingBox();
-    expect(svgBoundingBox?.width).toBeGreaterThan(50);
-    expect(svgBoundingBox?.height).toBeGreaterThan(50);
-    
-    // 5. Check for specific text in the flowchart
-    await expect(page.locator('text=Start')).toBeVisible();
-    await expect(page.locator('text=End')).toBeVisible();
+    // 3. Verify the image has reasonable size (not 0x0)
+    const imgBoundingBox = await firstMermaidImg.boundingBox();
+    expect(imgBoundingBox?.width).toBeGreaterThan(50);
+    expect(imgBoundingBox?.height).toBeGreaterThan(50);
     
     // Take screenshot for visual verification
     await page.screenshot({ path: 'tests/screenshots/mermaid-flowchart.png', fullPage: true });
@@ -42,6 +34,11 @@ test.describe('Mermaid Chart Rendering', () => {
       if (msg.type() === 'error') {
         consoleErrors.push(msg.text());
       }
+    });
+    
+    // Capture page errors
+    page.on('pageerror', error => {
+      consoleErrors.push(`PageError: ${error.message}`);
     });
     
     await page.goto('http://localhost:4321/about/');
@@ -57,27 +54,26 @@ test.describe('Mermaid Chart Rendering', () => {
     expect(consoleErrors.length).toBe(0);
   });
   
-  test('should have Mermaid CSS styles applied', async ({ page }) => {
+  test('should have Mermaid images with proper attributes', async ({ page }) => {
     await page.goto('http://localhost:4321/about/');
     await page.waitForLoadState('networkidle');
     
-    // Check that Mermaid containers have expected CSS
-    const mermaidContainer = page.locator('.mermaid').first();
+    // Check that Mermaid images exist and have proper attributes
+    const mermaidImages = page.locator('img[id^="mermaid-"]');
     
-    // Check for background color (from custom.css)
-    const backgroundColor = await mermaidContainer.evaluate(el => {
-      return window.getComputedStyle(el).backgroundColor;
-    });
+    // Should have at least one mermaid image
+    await expect(mermaidImages.first()).toBeVisible();
     
-    // Should have a background color (not transparent)
-    expect(backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
-    
-    // Check for border radius
-    const borderRadius = await mermaidContainer.evaluate(el => {
-      return window.getComputedStyle(el).borderRadius;
-    });
-    
-    // Should have border radius from custom.css
-    expect(borderRadius).toBe('8px');
+    // Check each mermaid image has valid dimensions
+    const count = await mermaidImages.count();
+    for (let i = 0; i < count; i++) {
+      const img = mermaidImages.nth(i);
+      const width = await img.getAttribute('width');
+      const height = await img.getAttribute('height');
+      
+      // Dimensions should be valid numbers
+      expect(Number(width)).toBeGreaterThan(0);
+      expect(Number(height)).toBeGreaterThan(0);
+    }
   });
 });
