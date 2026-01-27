@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://whtoo.github.io/sitemap-index.xml

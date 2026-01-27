@@ -1,0 +1,170 @@
+/* 自定义样式覆盖 Starlight 主题 */
+
+:root {
+  --sl-color-accent: #2337ff;
+  --sl-color-accent-low: #000d8a;
+  --sl-color-text: #1e293b;
+  --sl-color-text-invert: #ffffff;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #f8fafc;
+  --sl-color-bg-sidebar: #f1f5f9;
+  --sl-color-hairline: #e2e8f0;
+  --sl-color-hairline-light: #f1f5f9;
+}
+
+/* 中文排版优化 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.8;
+}
+
+/* 代码块样式 */
+pre, code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+/* 侧边栏优化 */
+.sl-sidebar {
+  border-right: 1px solid var(--sl-color-hairline);
+}
+
+/* 内容区域优化 */
+.prose {
+  max-width: 65ch;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .sl-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--sl-color-hairline);
+  }
+}
+
+/* Mermaid图表样式 */
+.mermaid {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow: auto;
+  border: 1px solid var(--sl-color-hairline);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mermaid:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Mermaid图表标题 */
+.mermaid::before {
+  content: '图表';
+  position: absolute;
+  top: -10px;
+  left: 1.5rem;
+  background: var(--sl-color-accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+/* Mermaid图表容器 */
+.mermaid svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mermaid节点样式增强 */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  stroke-width: 1.5px;
+  stroke: var(--sl-color-accent);
+}
+
+.mermaid .edgePath path {
+  stroke: var(--sl-color-accent);
+  stroke-width: 2px;
+}
+
+.mermaid .cluster rect {
+  fill: rgba(35, 55, 255, 0.05);
+  stroke: rgba(35, 55, 255, 0.2);
+  stroke-width: 1.5px;
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .mermaid {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .mermaid:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .mermaid::before {
+  background: var(--sl-color-accent-low);
+}
+
+[data-theme="dark"] .mermaid .cluster rect {
+  fill: rgba(35, 55, 255, 0.1);
+  stroke: rgba(35, 55, 255, 0.3);
+}
+
+/* 响应式Mermaid图表 */
+@media (max-width: 768px) {
+  .mermaid {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+  }
+  
+  .mermaid::before {
+    left: 1rem;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .mermaid {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .mermaid:hover {
+    transform: none;
+  }
+  
+  .mermaid::before {
+    display: none;
+  }
+}
+
+/* Graphviz/DOT图表样式 */
+pre[data-language="dot"],
+pre[data-language="graphviz"] {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--sl-color-hairline);
+}
+
+[data-theme="dark"] pre[data-language="dot"],
+[data-theme="dark"] pre[data-language="graphviz"] {
+  background-color: #1e293b;
+  border-color: #334155;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mermaid CDN</title>
+    <style>
+        .mermaid {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Mermaid CDN</h1>
+    
+    <div class="mermaid">
+        graph LR
+            A[浏览标签] --> B[Compiler]
+            A --> C[Interpreter]
+            A --> D[FRP]
+            A --> E[Visualization]
+            A --> F[Algorithm]
+    </div>
+    
+    <!-- Mermaid CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.2/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof window.mermaid === 'undefined') {
+                console.error('Mermaid not loaded');
+                return;
+            }
+            
+            // Initialize Mermaid
+            window.mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose'
+            });
+            
+            console.log('Mermaid initialized successfully');
+            console.log('Mermaid version:', window.mermaid.version);
+        });
+    </script>
+</body>
+</html>

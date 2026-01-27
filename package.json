@@ -1,0 +1,30 @@
+{
+  "name": "astro-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "oxlint --ignore-pattern \"**/*.astro\"",
+    "lint:fix": "oxlint --fix --ignore-pattern \"**/*.astro\""
+  },
+  "overrides": {
+    "lodash-es": "4.17.23"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.16.15",
+    "mermaid": "^11.12.2",
+    "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "oxlint": "^1.41.0",
+    "playwright": "^1.58.0",
+    "rehype-mermaid": "^2.0.0"
+  }
+}

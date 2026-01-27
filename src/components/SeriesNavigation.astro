@@ -1,0 +1,380 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	series: string;
+	seriesOrder: number;
+	currentSlug: string;
+}
+
+const { series, seriesOrder, currentSlug } = Astro.props;
+
+// 获取同系列的所有文章
+const allPosts = await getCollection('blog');
+const seriesPosts = allPosts
+	.filter(post => post.data.series === series)
+	.sort((a, b) => (a.data.seriesOrder || 0) - (b.data.seriesOrder || 0));
+
+// 找到当前文章在排序后的索引
+const currentIndex = seriesPosts.findIndex(post => post.id === currentSlug);
+const prevPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < seriesPosts.length - 1 ? seriesPosts[currentIndex + 1] : null;
+---
+
+{seriesPosts.length > 1 && (
+	<nav class="series-navigation" aria-label="系列文章导航">
+		<div class="series-header">
+			<h3 class="series-title">系列：{series}</h3>
+			<span class="series-progress">
+				{currentIndex + 1} / {seriesPosts.length}
+			</span>
+		</div>
+		
+		<div class="series-content">
+			<ol class="series-list">
+				{seriesPosts.map((post, index) => (
+					<li class:list={[
+						'series-item',
+						{ 'is-current': post.slug === currentSlug }
+					]}>
+						<span class="series-order">{index + 1}.</span>
+						<a 
+							href={`/blog/${post.id}/`}
+							class="series-link"
+							aria-current={post.id === currentSlug ? 'location' : false}
+						>
+							{post.data.title}
+						</a>
+						{post.id === currentSlug && (
+							<span class="current-indicator" aria-hidden="true">当前</span>
+						)}
+					</li>
+				))}
+			</ol>
+		</div>
+
+		{(prevPost || nextPost) && (
+			<div class="series-pagination">
+				{prevPost && (
+					<a 
+						href={`/blog/${prevPost.id}/`} 
+						class="pagination-link pagination-prev"
+						rel="prev"
+					>
+						<span class="pagination-label">上一篇</span>
+						<span class="pagination-title">{prevPost.data.title}</span>
+					</a>
+				)}
+				{nextPost && (
+					<a 
+						href={`/blog/${nextPost.id}/`} 
+						class="pagination-link pagination-next"
+						rel="next"
+					>
+						<span class="pagination-label">下一篇</span>
+						<span class="pagination-title">{nextPost.data.title}</span>
+					</a>
+				)}
+			</div>
+		)}
+	</nav>
+)}
+
+<style>
+	.series-navigation {
+		margin: 3rem 0;
+		padding: 1.5rem;
+		border: 1px solid rgba(var(--gray), 0.2);
+		border-radius: 12px;
+		background: rgba(var(--gray), 0.03);
+	}
+
+	.series-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid rgba(var(--gray), 0.1);
+	}
+
+	.series-title {
+		margin: 0;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: rgb(var(--gray-dark));
+	}
+
+	.series-progress {
+		font-size: 0.9rem;
+		color: rgb(var(--gray));
+		background: rgba(var(--gray), 0.1);
+		padding: 0.25rem 0.75rem;
+		border-radius: 999px;
+		font-weight: 500;
+	}
+
+	.series-content {
+		margin-bottom: 1rem;
+	}
+
+	.series-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.series-item {
+		display: flex;
+		align-items: center;
+		padding: 0.5rem 0.75rem;
+		margin-bottom: 0.25rem;
+		border-radius: 8px;
+		transition: all 0.2s ease;
+	}
+
+	.series-item:hover {
+		background: rgba(var(--gray), 0.05);
+	}
+
+	.series-item.is-current {
+		background: rgba(56, 189, 248, 0.1);
+		border-left: 3px solid #38bdf8;
+	}
+
+	.series-order {
+		font-size: 0.9rem;
+		color: rgb(var(--gray));
+		margin-right: 0.75rem;
+		font-weight: 500;
+		min-width: 1.5rem;
+	}
+
+	.series-link {
+		flex: 1;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		font-size: 0.95rem;
+		transition: color 0.2s ease;
+	}
+
+	.series-link:hover {
+		color: #38bdf8;
+	}
+
+	.series-item.is-current .series-link {
+		font-weight: 600;
+		color: #38bdf8;
+	}
+
+	.current-indicator {
+		font-size: 0.75rem;
+		color: #38bdf8;
+		background: rgba(56, 189, 248, 0.15);
+		padding: 0.125rem 0.5rem;
+		border-radius: 999px;
+		margin-left: 0.5rem;
+		font-weight: 500;
+	}
+
+	.series-pagination {
+		display: flex;
+		gap: 1rem;
+		margin-top: 1.25rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid rgba(var(--gray), 0.1);
+	}
+
+	.pagination-link {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		padding: 0.75rem;
+		border-radius: 8px;
+		background: rgba(var(--gray), 0.05);
+		transition: all 0.2s ease;
+		border: 1px solid rgba(var(--gray), 0.1);
+	}
+
+	.pagination-link:hover {
+		background: rgba(var(--gray), 0.1);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+
+	.pagination-prev {
+		text-align: left;
+	}
+
+	.pagination-next {
+		text-align: right;
+	}
+
+	.pagination-label {
+		font-size: 0.8rem;
+		color: rgb(var(--gray));
+		margin-bottom: 0.25rem;
+		font-weight: 500;
+	}
+
+	.pagination-title {
+		font-size: 0.9rem;
+		color: rgb(var(--gray-dark));
+		font-weight: 500;
+		line-height: 1.3;
+	}
+
+	.pagination-link:hover .pagination-title {
+		color: #38bdf8;
+	}
+
+	/* 暗色主题适配 */
+	:global([data-theme="dark"]) .series-navigation {
+		background: rgba(var(--gray), 0.05);
+		border-color: rgba(var(--gray), 0.3);
+	}
+
+	:global([data-theme="dark"]) .series-title {
+		color: rgb(var(--gray-light));
+	}
+
+	:global([data-theme="dark"]) .series-link {
+		color: rgb(var(--gray-light));
+	}
+
+	:global([data-theme="dark"]) .pagination-title {
+		color: rgb(var(--gray-light));
+	}
+
+	/* 响应式设计 */
+	@media (max-width: 640px) {
+		.series-navigation {
+			padding: 1rem;
+			margin: 2rem 0;
+		}
+
+		.series-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.series-pagination {
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+
+		.pagination-prev,
+		.pagination-next {
+			text-align: left;
+		}
+	}
+</style>
+
+<script>
+	// 系列导航交互逻辑
+	document.addEventListener('DOMContentLoaded', () => {
+		const seriesNav = document.querySelector('.series-navigation');
+		if (!seriesNav) return;
+
+		// 平滑滚动到当前文章
+		const currentItem = seriesNav.querySelector('.series-item.is-current');
+		if (currentItem) {
+			currentItem.scrollIntoView({ 
+				behavior: 'smooth', 
+				block: 'nearest' 
+			});
+		}
+
+		// 为分页链接添加键盘导航支持
+		const prevLink = seriesNav.querySelector('.pagination-prev');
+		const nextLink = seriesNav.querySelector('.pagination-next');
+
+		if (prevLink || nextLink) {
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowLeft' && prevLink) {
+					e.preventDefault();
+					(prevLink as HTMLAnchorElement).click();
+				} else if (e.key === 'ArrowRight' && nextLink) {
+					e.preventDefault();
+					(nextLink as HTMLAnchorElement).click();
+				}
+			});
+		}
+	});
+</script>
+
+<!-- Mermaid图表初始化 -->
+<script>
+	// 初始化Mermaid图表（如果mermaid已加载）
+	function initSeriesMermaid() {
+		if (typeof window.mermaid === 'undefined') {
+			console.warn('Mermaid not available for SeriesNavigation');
+			return;
+		}
+		
+		// 确保mermaid已初始化（可能已在其他地方初始化）
+		if (!window.mermaid.initialized) {
+			window.mermaid.initialize({
+				startOnLoad: true,
+				theme: 'default',
+				themeVariables: {
+					primaryColor: '#2337ff',
+					primaryTextColor: '#fff',
+					primaryBorderColor: '#000d8a',
+					lineColor: '#2337ff',
+					secondaryColor: '#000d8a',
+					tertiaryColor: '#f1f5f9',
+					tertiaryBorderColor: '#e2e8f0',
+					fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+					fontSize: '14px'
+				},
+				flowchart: {
+					curve: 'basis',
+					htmlLabels: true,
+					useMaxWidth: true,
+					padding: 15
+				},
+				sequence: {
+					diagramMarginX: 50,
+					diagramMarginY: 10,
+					actorMargin: 50,
+					boxMargin: 10,
+					messageMargin: 35,
+					width: 150
+				},
+				gantt: {
+					titleTopMargin: 25,
+					barHeight: 20,
+					barGap: 4,
+					topPadding: 50,
+					leftPadding: 75,
+					gridLineStartPadding: 35,
+					fontSize: 13,
+					fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+					numberSectionStyles: 4,
+					axisFormat: '%Y-%m-%d'
+				},
+				securityLevel: 'loose'
+			});
+		}
+		
+		// 监听主题变化
+		const observer = new MutationObserver((mutations) => {
+			mutations.forEach((mutation) => {
+				if (mutation.attributeName === 'data-theme') {
+					// 重新渲染Mermaid图表以适应主题变化
+					window.mermaid.init(undefined, '.mermaid');
+				}
+			});
+		});
+
+		// 开始观察body元素的属性变化
+		observer.observe(document.body, { attributes: true });
+	}
+	
+	// 在DOM加载完成后初始化
+	document.addEventListener('DOMContentLoaded', initSeriesMermaid);
+</script>

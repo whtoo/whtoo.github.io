@@ -1,0 +1,33 @@
+{
+  "name": "analyze-hexo-blog",
+  "description": "分析 Hexo 博客项目结构和整理项目文档",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "task": {
+        "type": "string",
+        "enum": ["analyze", "document"],
+        "description": "任务类型: analyze=分析项目结构, document=整理项目文档"
+      },
+      "output_path": {
+        "type": "string",
+        "description": "输出路径 (document 任务时使用)"
+      }
+    },
+    "required": ["task"]
+  },
+  "examples": [
+    {
+      "description": "分析当前 Hexo 博客项目结构",
+      "command": "analyze-hexo-blog:analyze"
+    },
+    {
+      "description": "生成项目文档到指定路径",
+      "command": "analyze-hexo-blog:document{\"output_path\":\"docs/\"}"
+    }
+  ],
+  "implementation": {
+    "agent": "Explore",
+    "prompt": "分析当前 Hexo 博客项目：\n\n1. 项目类型和用途 (Hexo 版本、主题、插件)\n2. 目录结构分析 (posts、pages、scaffolds、配置等)\n3. 可用的 npm 脚本命令\n4. 配置文件详情 (_config.yml, _config.next.yml)\n5. 内容组织方式 (Markdown front matter 格式)\n6. 部署配置\n\n返回完整的项目分析报告，包括所有关键信息和架构概述。\n\n如果任务是 'document'，额外生成 CLAUDE.md 文件并保存到指定路径。"
+  }
+}

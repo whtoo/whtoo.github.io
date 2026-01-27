@@ -1,0 +1,93 @@
+---
+interface Props {
+	className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<div class:list={["reading-progress", className]} aria-hidden="true">
+	<div class="reading-progress-bar"></div>
+</div>
+
+<style>
+	.reading-progress {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background-color: transparent;
+		z-index: 9999;
+		pointer-events: none;
+	}
+
+	.reading-progress-bar {
+		height: 100%;
+		width: 0%;
+		background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+		transition: width 0.1s ease-out;
+		box-shadow: 0 2px 4px rgba(56, 189, 248, 0.3);
+	}
+
+	/* 暗色主题适配 */
+	:global([data-theme="dark"]) .reading-progress-bar {
+		background: linear-gradient(90deg, #60a5fa, #3b82f6);
+		box-shadow: 0 2px 4px rgba(96, 165, 250, 0.3);
+	}
+</style>
+
+<script>
+	class ReadingProgress {
+		private progressBar: HTMLElement;
+		private ticking: boolean = false;
+
+		constructor() {
+			this.progressBar = document.querySelector('.reading-progress-bar') as HTMLElement;
+			if (!this.progressBar) return;
+
+			this.init();
+		}
+
+		private init(): void {
+			// 初始化进度条
+			this.updateProgress();
+			
+			// 监听滚动事件
+			window.addEventListener('scroll', () => this.requestTick());
+			
+			// 监听窗口大小变化
+			window.addEventListener('resize', () => this.requestTick());
+		}
+
+		private requestTick(): void {
+			if (!this.ticking) {
+				requestAnimationFrame(() => this.updateProgress());
+				this.ticking = true;
+			}
+		}
+
+		private updateProgress(): void {
+			const windowHeight = window.innerHeight;
+			const documentHeight = document.documentElement.scrollHeight - windowHeight;
+			const scrolled = window.scrollY;
+			
+			// 计算进度百分比
+			const progress = documentHeight > 0 ? (scrolled / documentHeight) * 100 : 0;
+			
+			// 更新进度条宽度
+			this.progressBar.style.width = `${Math.min(progress, 100)}%`;
+			
+			// 重置 ticking 状态
+			this.ticking = false;
+		}
+	}
+
+	// 页面加载完成后初始化
+	document.addEventListener('DOMContentLoaded', () => {
+		new ReadingProgress();
+	});
+
+	// 导出类以供其他模块使用
+	(window as any).ReadingProgress = ReadingProgress;
+</script>

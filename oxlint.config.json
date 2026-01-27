@@ -1,0 +1,25 @@
+{
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "off",
+    "style": "off",
+    "nursery": "off",
+    "restriction": "off"
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "error"
+  },
+  "ignorePatterns": [
+    "dist/**",
+    "node_modules/**",
+    ".astro/**",
+    "public/**",
+    "**/*.astro"
+  ]
+}

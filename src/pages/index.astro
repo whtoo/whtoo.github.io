@@ -1,0 +1,173 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{SITE_TITLE}</title>
+		<meta name="description" content={SITE_DESCRIPTION} />
+		<style>
+			:root {
+				--accent: #2337ff;
+				--accent-dark: #000d8a;
+				--black: 15, 18, 25;
+				--gray: 96, 115, 159;
+				--gray-light: 229, 233, 240;
+				--gray-dark: 34, 41, 57;
+				--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+			}
+			
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+				margin: 0;
+				padding: 0;
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+			}
+			
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 0 1rem;
+			}
+			
+			.header {
+				text-align: center;
+				padding: 4rem 0 2rem;
+			}
+			
+			.header h1 {
+				font-size: 3rem;
+				margin: 0 0 0.5rem 0;
+				color: rgb(var(--black));
+			}
+			
+			.header p {
+				font-size: 1.2rem;
+				color: rgb(var(--gray));
+			}
+			
+			.nav {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				margin: 2rem 0;
+			}
+			
+			.nav a {
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 500;
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+				transition: background 0.2s;
+			}
+			
+			.nav a:hover {
+				background: rgba(var(--gray-light), 0.5);
+			}
+			
+			.content {
+				padding: 2rem 0;
+			}
+			
+			.cta {
+				text-align: center;
+				margin: 3rem 0;
+				padding: 2rem;
+				background: linear-gradient(var(--gray-gradient));
+				border-radius: 1rem;
+			}
+			
+			.cta a {
+				display: inline-block;
+				padding: 0.75rem 1.5rem;
+				background: var(--accent);
+				color: white;
+				text-decoration: none;
+				border-radius: 0.5rem;
+				font-weight: 500;
+				margin-top: 1rem;
+			}
+			
+			.cta a:hover {
+				background: var(--accent-dark);
+			}
+			
+			.footer {
+				text-align: center;
+				padding: 2rem 0;
+				color: rgb(var(--gray));
+				border-top: 1px solid rgba(var(--gray-light), 0.5);
+				margin-top: 3rem;
+			}
+			
+			@media (max-width: 768px) {
+				.header h1 {
+					font-size: 2rem;
+				}
+				
+				.nav {
+					flex-direction: column;
+					align-items: center;
+					gap: 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header">
+				<h1>{SITE_TITLE}</h1>
+				<p>{SITE_DESCRIPTION}</p>
+			</header>
+			
+			<nav class="nav">
+				<a href="/">🏠 首页</a>
+				<a href="/blog/">📝 博客</a>
+				<a href="/projects/">🚀 项目</a>
+				<a href="/about/">👤 关于</a>
+			</nav>
+			
+			<main class="content">
+				<section>
+					<h2>欢迎</h2>
+					<p>
+						这里是<strong>随性</strong>，一个个人技术文档库。这里记录着我在编程、
+						编译器、函数式响应式编程（FRP）、图形学等领域的探索与实践。
+					</p>
+					<p>
+						所有文档都本着"随性勿cue"的精神，记录那些有趣的技术细节和实验性想法。
+					</p>
+				</section>
+				
+				<div class="cta">
+					<h3>开始探索</h3>
+					<p>浏览我的博客文章和项目，了解更多关于我的技术实践。</p>
+					<a href="/blog/">查看博客 →</a>
+				</div>
+				
+				<section>
+					<h2>技术领域</h2>
+					<ul>
+						<li><strong>编程语言</strong>: Racket 解释器实现、闭包与可变量</li>
+						<li><strong>Web 开发</strong>: CSS3 实践研究</li>
+						<li><strong>可视化</strong>: Graphviz、DOT 可视化</li>
+						<li><strong>响应式编程</strong>: FRP 入门教程</li>
+						<li><strong>算法</strong>: LeetCode 算法问题</li>
+						<li><strong>底层编程</strong>: 汇编语言研究</li>
+					</ul>
+				</section>
+			</main>
+			
+			<footer class="footer">
+				<p>© 2026 随性. 保留所有权利.</p>
+				<p>本着"随性勿cue"的精神，记录有趣的技术细节和实验性想法。</p>
+			</footer>
+		</div>
+	</body>
+</html>
