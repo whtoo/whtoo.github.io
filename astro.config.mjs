@@ -31,7 +31,7 @@ export default defineConfig({
       excludeLangs: ['mermaid'],  // 防止语法高亮干扰Mermaid处理
     },
     shikiConfig: {
-      theme: 'github-dark',
+      theme: 'material-theme-darker',
       langs: [
         // 基础Web语言
         'javascript',
