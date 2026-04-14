@@ -10,6 +10,32 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{SITE_TITLE}</title>
 		<meta name="description" content={SITE_DESCRIPTION} />
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "ProfilePage",
+			"mainEntity": {
+				"@type": "Person",
+				"name": "Blitz",
+				"alternateName": ["Arthur Blitz", "Wilson"],
+				"description": "专注 AI Autonomy Evolving 的工程师，OpenClaw 框架与 SPC-CTX 上下文引擎的作者，CDA（上下文密度对齐）范式的提出者。",
+				"url": "https://whtoo.github.io",
+				"sameAs": ["https://github.com/whtoo"],
+				"knowsAbout": [
+					"AI Agent",
+					"Context Engine",
+					"LLM Context Management",
+					"Autonomous Systems",
+					"Compiler Construction",
+					"Functional Reactive Programming"
+				],
+				"worksFor": {
+					"@type": "Organization",
+					"name": "OpenClaw"
+				}
+			}
+		}
+		</script>
 		<style>
 			:root {
 				--accent: #2337ff;
@@ -75,6 +101,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				padding: 2rem 0;
 			}
 			
+			.highlight-box {
+				background: linear-gradient(var(--gray-gradient));
+				border-radius: 1rem;
+				padding: 1.5rem 2rem;
+				margin: 1.5rem 0;
+			}
+			
+			.highlight-box h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+			
 			.cta {
 				text-align: center;
 				margin: 3rem 0;
@@ -96,6 +134,24 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			
 			.cta a:hover {
 				background: var(--accent-dark);
+			}
+			
+			.focus-list {
+				list-style: none;
+				padding: 0;
+			}
+			
+			.focus-list li {
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgba(var(--gray-light), 1);
+			}
+			
+			.focus-list li:last-child {
+				border-bottom: none;
+			}
+			
+			.focus-list strong {
+				color: var(--accent-dark);
 			}
 			
 			.footer {
@@ -135,38 +191,51 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 			
 			<main class="content">
 				<section>
-					<h2>欢迎</h2>
+					<h2>欢迎来到随性</h2>
 					<p>
-						这里是<strong>随性</strong>，一个个人技术文档库。这里记录着我在编程、
-						编译器、函数式响应式编程（FRP）、图形学等领域的探索与实践。
+						这里是 <strong>Blitz</strong> 的技术文档库。当前核心关注领域是 <strong>AI Autonomy Evolving</strong> —— 即如何让 AI Agent 在长程任务中保持方向感、记忆力和自主演化能力。
 					</p>
 					<p>
-						所有文档都本着"随性勿cue"的精神，记录那些有趣的技术细节和实验性想法。
+						我正在构建 <strong>OpenClaw</strong> AI Agent 运行框架和 <strong>SPC-CTX</strong> 上下文引擎，同时撰写 <strong>CDA（上下文密度对齐）</strong> 书稿，系统梳理理论与实践。
 					</p>
 				</section>
 				
-				<div class="cta">
-					<h3>开始探索</h3>
-					<p>浏览我的博客文章和项目，了解更多关于我的技术实践。</p>
-					<a href="/blog/">查看博客 →</a>
+				<div class="highlight-box">
+					<h3>核心项目速览</h3>
+					<ul class="focus-list">
+						<li>
+							<strong>OpenClaw</strong> — AI Agent 运行框架，支持多 Agent 协同、ACPX 路由与上下文生命周期管理。
+						</li>
+						<li>
+							<strong>SPC-CTX</strong> — Self-Paced Context Engine，通过 Phase 感知和语义压缩图（SCG）实现上下文「主动对焦」。长任务中 token 稳定在 28-40%。
+						</li>
+						<li>
+							<strong>CDA</strong> — Context Density Alignment，上下文密度对齐范式。核心主张：从「如何放更多信息」到「如何让 LLM 在正确方向上获得足够密度」。
+						</li>
+					</ul>
 				</div>
 				
 				<section>
-					<h2>技术领域</h2>
+					<h2>研究方向</h2>
 					<ul>
-						<li><strong>编程语言</strong>: Racket 解释器实现、闭包与可变量</li>
-						<li><strong>Web 开发</strong>: CSS3 实践研究</li>
-						<li><strong>可视化</strong>: Graphviz、DOT 可视化</li>
-						<li><strong>响应式编程</strong>: FRP 入门教程</li>
-						<li><strong>算法</strong>: LeetCode 算法问题</li>
-						<li><strong>底层编程</strong>: 汇编语言研究</li>
+						<li><strong>AI Agent 自主系统</strong>：长程任务中的方向感保持与记忆治理</li>
+						<li><strong>上下文引擎</strong>：动态压缩、语义对齐与 Phase 感知架构</li>
+						<li><strong>Agent 运行框架</strong>：多 Agent 协同、工具编排与错误恢复</li>
+						<li><strong>结构化推理</strong>：LLM-DFS 思维框架与经验原子化方法</li>
+						<li><strong>历史积累</strong>：编译器构造、解释器实现、FRP、汇编与可视化</li>
 					</ul>
 				</section>
+				
+				<div class="cta">
+					<h3>了解更多</h3>
+					<p>查看关于页面，了解 Blitz 是谁、SPC-CTX 是什么、以及 CDA 范式的完整理论框架。</p>
+					<a href="/about/">关于 Blitz →</a>
+				</div>
 			</main>
 			
 			<footer class="footer">
 				<p>© 2026 随性. 保留所有权利.</p>
-				<p>本着"随性勿cue"的精神，记录有趣的技术细节和实验性想法。</p>
+				<p>术之尽头，源自我心。</p>
 			</footer>
 		</div>
 	</body>
