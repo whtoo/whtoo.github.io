@@ -1,6 +1,6 @@
 ---
 title: 关于
-description: Blitz 是谁？他是专注 AI Autonomy Evolving 的工程师，OpenClaw 框架与 SPC-CTX 上下文引擎的作者，CDA（上下文密度对齐）范式的提出者。
+description: Blitz 是谁？他的主战场是 Autonomy Agent Continuous Context。他是 OpenClaw 框架与 SPC-CTX 上下文引擎的作者，CDA（上下文密度对齐）范式的提出者。
 customSlug: about
 layout: ../layouts/Page.astro
 ---
@@ -11,7 +11,7 @@ layout: ../layouts/Page.astro
 
 ## 谁是 Blitz？
 
-**Blitz** 是一位 All In **AI Autonomy Evolving** 的工程师与研究者。
+**Blitz** 是一位 All In **AI Autonomy Evolving** 的工程师与研究者。他的主战场是 **Autonomy Agent Continuous Context**。
 
 他的技术轨迹经历了三层跃迁：
 1. **底层系统训练** — 从汇编、解释器、FRP 的硬核实现中，学会「精确控制计算过程」
@@ -131,7 +131,7 @@ Blitz 的工程师身份不仅体现在代码上，也体现在一套强制性�
 
 ### Blitz 目前在做什么？
 
-全职投入 **OpenClaw** 框架与 **SPC-CTX** 引擎的研发，同时撰写 **CDA 书稿**，系统梳理上下文密度对齐的理论与工程实践。
+主战场是 **Autonomy Agent Continuous Context**，通过 **OpenClaw** 框架与 **SPC-CTX** 引擎的工程落地，以及 **CDA 书稿** 的理论梳理，系统推进上下文密度对齐的研究与实践。
 
 ### SPC-CTX 与 MemGPT / LangChain Memory 有什么区别？
 

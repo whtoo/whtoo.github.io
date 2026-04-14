@@ -10,7 +10,7 @@ layout: ../layouts/Page.astro
 ### OpenClaw
 > **一句话定义**：一个支持多 Agent 协同、ACPX 路由与上下文生命周期管理的 AI Agent 运行框架。
 
-OpenClaw 是 Blitz 正在构建的 AI Agent 运行框架。它不仅是代码集合，更是一套将 **AI Autonomy Evolving** 理念落地的工程基础设施。
+OpenClaw 是 Blitz 正在构建的 AI Agent 运行框架。它的主战场是 **Autonomy Agent Continuous Context** —— 不仅是一套代码，更是将 AI Autonomy Evolving 理念落地的工程基础设施。
 
 **关键能力**：
 - **多 Agent 协同**：通过 ACPX（Agent Communication Protocol eXtended）路由，在主会话、子 Agent、外部工具之间分配任务
