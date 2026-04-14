@@ -15,10 +15,23 @@ const posts = (await getCollection('blog'))
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={`${SITE_TITLE} — Blog`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 960px;
+			}
+			.blog-header {
+				text-align: center;
+				padding: 2rem 0 1rem;
+			}
+			.blog-header h2 {
+				margin: 0;
+				font-size: 2rem;
+				color: rgb(var(--black));
+			}
+			.blog-header p {
+				margin: 0.5rem 0 0;
+				color: rgb(var(--gray));
 			}
 			ul {
 				display: flex;
@@ -69,6 +82,11 @@ const posts = (await getCollection('blog'))
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
 			}
+			.empty {
+				text-align: center;
+				padding: 4rem 0;
+				color: rgb(var(--gray));
+			}
 			@media (max-width: 720px) {
 				ul {
 					gap: 0.5em;
@@ -89,6 +107,10 @@ const posts = (await getCollection('blog'))
 	<body>
 		<Header />
 		<main>
+			<div class="blog-header">
+				<h2>Blog</h2>
+				<p> writings on Autonomy Agent Continuous Context, CDA, and engineering practice.</p>
+			</div>
 			<section>
 				<ul>
 					{
@@ -107,6 +129,11 @@ const posts = (await getCollection('blog'))
 						))
 					}
 				</ul>
+				{posts.length === 0 && (
+					<div class="empty">
+						<p>暂无文章。</p>
+					</div>
+				)}
 			</section>
 		</main>
 		<Footer />
