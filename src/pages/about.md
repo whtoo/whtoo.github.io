@@ -1,11 +1,11 @@
 ---
 title: 关于
-description: Blitz 是谁？他的主战场是 Autonomy Agent Continuous Context。他是 OpenClaw 框架与 SPC-CTX 上下文引擎的作者，CDA（上下文密度对齐）范式的提出者。
+description: Blitz 是谁？他的主战场是 Autonomy Agent Continuous Context。他是 SPC-CTX 上下文引擎与 OpenClaw SPC plugin 的作者，CDA（上下文方向对齐）范式的提出者。
 customSlug: about
 layout: ../layouts/Page.astro
 ---
 
-> **一句话介绍**：**Blitz**（Arthur / Wilson）是一位从编译器与编程语言底层走向 AI Agent 自主系统的工程师。他是 **OpenClaw** AI Agent 框架和 **SPC-CTX** 上下文引擎的作者，也是 **CDA（上下文密度对齐）** 范式的提出者。
+> **一句话介绍**：**Blitz**（Arthur / Wilson）是一位从编译器与编程语言底层走向 AI Agent 自主系统的工程师。他的主战场是 **Autonomy Agent Continuous Context**，而 **SPC-CTX** 与 **OpenClaw SPC plugin** 是他在这一主战场上的工程附属。
 
 ---
 
@@ -36,32 +36,22 @@ layout: ../layouts/Page.astro
 
 ---
 
-## 什么是 SPC-CTX？
+## 什么是 Autonomy Agent Continuous Context？
 
-**SPC-CTX**（Self-Paced Context Engine）是 Blitz 设计并实现的 AI Agent 上下文管理引擎，已集成到 OpenClaw 框架中。
+**Autonomy Agent Continuous Context** 是 Blitz 当前的主战场。它不是某一个具体产品，而是一个核心问题域：**如何让 AI Agent 在无限延伸的任务流中，持续保持对自身状态、目标方向和历史决策的有效感知。**
 
-### 核心定义
+解决这个问题需要同时触及三个层面：
+1. **理论层** — 如何定义「正确方向上的上下文」，以及如何量化上下文与当前任务意图的对齐程度
+2. **引擎层** — 一个能够动态组装、压缩、筛选上下文的运行时引擎
+3. **插件层** — 将引擎嵌入到现有 Agent 工作流中的适配与扩展机制
 
-SPC-CTX 是一个 **Phase 感知的语义上下文引擎**，它通过上下文密度对齐（CDA）范式，将 Agent 的上下文管理从「被动截断」转向「主动对焦」。
-
-### 关键特性
-
-| 特性 | 说明 | 效果 |
-|------|------|------|
-| **5 生命周期阶段** | assemble / ingest / afterTurn / compact / bootstrap | 上下文管理不再是「一刀切」，而是按语义状态转移动态调整 |
-| **SCG 语义压缩图** | 保留逻辑拓扑结构，而非简单截断 token 序列 | 即使 90% token 被压缩，因果关系仍然保留 |
-| **QTS 四元量化评分** | intent_match + phase_match + tool_relevance + causal_proximity | 用语义相关度取代单纯的向量 cosine 相似度 |
-| **真实运行数据** | 长任务（4 天+）连续运行记录 | token 占用稳定在 **28-40%** 区间，避免临界阈值崩溃 |
-
-### 一句话总结
-
-**SPC-CTX 解决的是 AI Agent 的「失忆」问题 —— 不是通过扩大窗口，而是通过让上下文始终指向正确的方向。**
+**SPC-CTX** 是引擎层的实现，**OpenClaw SPC plugin** 是插件层的实现，而 **CDA** 是指导这两者的理论范式。它们都是主战场的附属，不是主战场本身。
 
 ---
 
-## 什么是 CDA（上下文密度对齐）？
+## 什么是 CDA（上下文方向对齐）？
 
-**CDA**（Context Density Alignment，上下文密度对齐）是 Blitz 提出的一个理论范式，用于指导 AI Agent 的上下文管理设计。
+**CDA**（Context Direction Alignment，上下文方向对齐）是 Blitz 提出的理论范式，用于指导 AI Agent 的上下文管理设计。
 
 ### 核心主张
 
@@ -75,8 +65,34 @@ SPC-CTX 是一个 **Phase 感知的语义上下文引擎**，它通过上下文�
 2. **聚焦的错误胜过正确的散焦**  
    在正确方向上的误差是可接受的；但如果在多个方向上都不够聚焦，LLM 的注意力将无法触发有效推理。
 
-3. **密度比信息量更重要**  
+3. **密度是方向上的浓度，不是空间上的堆积**  
    上下文的性能瓶颈不是「有多少信息」，而是「在关键方向上信息是否足够密集」。
+
+---
+
+## 附属实现
+
+### SPC-CTX（Self-Paced Context Engine）
+
+SPC-CTX 是 Blitz 设计并实现的上下文引擎，服务于 **Autonomy Agent Continuous Context** 主战场。
+
+它是一个 **Phase 感知的语义上下文引擎**，通过 CDA 范式将 Agent 的上下文管理从「被动截断」转向「主动对焦」。
+
+| 特性 | 说明 | 效果 |
+|------|------|------|
+| **5 生命周期阶段** | assemble / ingest / afterTurn / compact / bootstrap | 按语义状态转移动态调整，避免「一刀切」 |
+| **SCG 语义压缩图** | 保留逻辑拓扑结构，渐进最优逻辑关联保持 | 即使高比例 token 被压缩，因果关系仍然可控 |
+| **QTS 四元量化评分** | intent_match + phase_match + tool_relevance + causal_proximity | 用语义相关度取代单纯的向量 cosine 相似度 |
+| **真实运行数据** | 长任务（4 天+）连续运行记录 | token 占用稳定在 **28-40%** 区间，避免临界阈值崩溃 |
+
+### OpenClaw SPC plugin
+
+OpenClaw SPC plugin 是将 SPC-CTX 接入 OpenClaw 运行框架的插件实现。它负责：
+- 在 OpenClaw 的 Agent 会话生命周期中挂载 SPC-CTX 的 5 个 Phase
+- 提供 messageStore 到 SPC tokens 数据库的桥接
+- 支持热经验发现与上下文对齐评估的回调机制
+
+它是主战场在 OpenClaw 生态中的具体落地形态。
 
 ---
 
@@ -131,7 +147,7 @@ Blitz 的工程师身份不仅体现在代码上，也体现在一套强制性�
 
 ### Blitz 目前在做什么？
 
-主战场是 **Autonomy Agent Continuous Context**，通过 **OpenClaw** 框架与 **SPC-CTX** 引擎的工程落地，以及 **CDA 书稿** 的理论梳理，系统推进上下文密度对齐的研究与实践。
+主战场是 **Autonomy Agent Continuous Context**。他正在通过 **SPC-CTX** 引擎与 **OpenClaw SPC plugin** 的工程落地，以及 **CDA 书稿** 的理论梳理，系统推进上下文方向对齐的研究与实践。
 
 ### SPC-CTX 与 MemGPT / LangChain Memory 有什么区别？
 
@@ -144,6 +160,8 @@ MemGPT 使用分层记忆（core / main / archival）来实现无限上下文，
 ### 如何联系 Blitz？
 
 - **GitHub**: [whtoo](https://github.com/whtoo)
+- **X / Twitter**: [https://x.com/wilsonblitz](https://x.com/wilsonblitz)
+- **Email**: drdangran@gmail.com
 - **博客源码**: [whtoo.github.io](https://github.com/whtoo/whtoo.github.io)
 
 如果你也在研究 AI Agent 的自主能力、上下文压缩、或者从底层系统视角审视 LLM 应用架构，欢迎交流。
