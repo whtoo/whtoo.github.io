@@ -5,9 +5,7 @@ pubDate: 2026-04-14
 tags: ["CDA", "SPC-CTX", "AI Agent", "Context Management", "Autonomy Agent Continuous Context"]
 ---
 
-# Context Direction Alignment: The Core Paradigm for AI Agent Context Management
-
-## Context Direction Alignment — A Paradigm for Context Management in Ultra-Long Continuous Tasks
+### Context Direction Alignment — A Paradigm for Context Management in Ultra-Long Continuous Tasks
 
 > **A Core Thesis**: Good context management is not asking "Is the context large enough?" but rather "Is the LLM repeating the same known error while advancing the current thesis?" This is not a positive guarantee (it will definitely find the right path), but a negative guarantee (never repeat a dead end).
 
