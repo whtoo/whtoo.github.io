@@ -7,12 +7,22 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import ReadingProgress from '../components/ReadingProgress.astro';
 import SeriesNavigation from '../components/SeriesNavigation.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Heading {
+	depth: number;
+	slug: string;
+	text: string;
+}
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	slug: string;
+	headings?: Heading[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage, series, seriesOrder, slug } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, series, seriesOrder, slug, headings = [] } = Astro.props;
+
+const hasToc = headings.filter((h) => h.depth >= 2 && h.depth <= 3).length > 2;
 ---
 
 <html lang="zh-CN">
@@ -56,6 +66,52 @@ const { title, description, pubDate, updatedDate, heroImage, series, seriesOrder
 			.last-updated-on {
 				font-style: italic;
 			}
+
+			/* Two-column layout with TOC sidebar */
+			.blog-layout {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 1em;
+			}
+			.blog-content {
+				min-width: 0;
+				flex-shrink: 0;
+			}
+			.blog-sidebar {
+				width: 220px;
+				flex-shrink: 0;
+				padding-top: 1rem;
+			}
+			/* Single column when no TOC or on mobile */
+			.blog-layout:not(.has-toc) {
+				display: block;
+			}
+			.blog-layout:not(.has-toc) .blog-content {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+			}
+			.blog-layout:not(.has-toc) .blog-sidebar {
+				display: none;
+			}
+
+			/* Mobile: hide TOC sidebar */
+			@media (max-width: 1024px) {
+				.blog-layout {
+					display: block;
+				}
+				.blog-content {
+					width: 720px;
+					max-width: calc(100% - 2em);
+					margin: auto;
+				}
+				.blog-sidebar {
+					display: none;
+				}
+			}
 		</style>
 	</head>
 
@@ -67,30 +123,39 @@ const { title, description, pubDate, updatedDate, heroImage, series, seriesOrder
 				<div class="hero-image">
 					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 				</div>
-					<div class="prose">
-						<div class="title">
-							<div class="date">
-								<FormattedDate date={pubDate} />
-								{
-									updatedDate && (
-										<div class="last-updated-on">
-											最后更新于 <FormattedDate date={updatedDate} />
-										</div>
-									)
-								}
+				<div class:list={['blog-layout', { 'has-toc': hasToc }]}>
+					<div class="blog-content">
+						<div class="prose">
+							<div class="title">
+								<div class="date">
+									<FormattedDate date={pubDate} />
+									{
+										updatedDate && (
+											<div class="last-updated-on">
+												最后更新于 <FormattedDate date={updatedDate} />
+											</div>
+										)
+									}
+								</div>
+								<h1>{title}</h1>
+								<hr />
 							</div>
-							<h1>{title}</h1>
-							<hr />
+							<slot />
+							{series && seriesOrder && (
+								<SeriesNavigation
+									series={series}
+									seriesOrder={seriesOrder}
+									currentSlug={slug}
+								/>
+							)}
 						</div>
-						<slot />
-						{series && seriesOrder && (
-							<SeriesNavigation 
-								series={series} 
-								seriesOrder={seriesOrder} 
-								currentSlug={slug}
-							/>
-						)}
 					</div>
+					{hasToc && (
+						<aside class="blog-sidebar">
+							<TableOfContents headings={headings} />
+						</aside>
+					)}
+				</div>
 			</article>
 		</main>
 		<Footer />
