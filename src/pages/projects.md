@@ -73,7 +73,13 @@ OpenClaw SPC plugin 是主战场在 OpenClaw 生态中的具体落地形态。�
 - **第三章**：真实运行数据、v0.16.0 关键修复的工程价值、市场共鸣与反例边界
 - **第四章**：SPC-CTX 与 OpenClaw SPC plugin 的完整工程实现路径
 
-**状态**: 撰写中
+**状态**: 初稿完成（2026-04-14）
+
+**阅读书稿**：
+- [中文版](/blog/cda-context-direction-alignment-zh/) — 《上下文方向对齐：AI Agent 上下文管理的核心范式》
+- [English Version](/blog/cda-context-direction-alignment-en/) — Context Direction Alignment: The Core Paradigm for AI Agent Context Management
+
+**源文件**: [whtoo/cda_protocol](https://github.com/whtoo/cda_protocol)
 
 ---
 
