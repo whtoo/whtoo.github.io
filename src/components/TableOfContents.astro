@@ -1,0 +1,172 @@
+---
+interface Heading {
+	depth: number;
+	slug: string;
+	text: string;
+}
+
+interface Props {
+	headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// Only show h2 and h3 for a clean TOC
+const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{tocItems.length > 0 && (
+	<nav class="toc" aria-label="目录">
+		<h2 class="toc-title">目录</h2>
+		<ul class="toc-list">
+			{tocItems.map((heading) => (
+				<li class={`toc-item depth-${heading.depth}`}>
+					<a href={`#${heading.slug}`} data-heading-slug={heading.slug}>
+						{heading.text}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+)}
+
+<style>
+	.toc {
+		position: sticky;
+		top: 2rem;
+		max-height: calc(100vh - 4rem);
+		overflow-y: auto;
+		padding: 1rem 0;
+	}
+
+	.toc-title {
+		font-size: 0.8rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: rgb(var(--gray));
+		margin: 0 0 0.75rem 0;
+		font-family: "Atkinson", sans-serif;
+	}
+
+	.toc-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		border-left: 2px solid rgb(var(--gray-light));
+	}
+
+	.toc-item {
+		margin: 0;
+		padding: 0;
+	}
+
+	.toc-item a {
+		display: block;
+		padding: 0.3em 0.75rem;
+		font-size: 0.85rem;
+		line-height: 1.4;
+		color: rgb(var(--gray));
+		text-decoration: none;
+		transition: color 0.2s, border-color 0.2s;
+		border-left: 2px solid transparent;
+		margin-left: -2px;
+	}
+
+	.toc-item a:hover {
+		color: rgb(var(--black));
+	}
+
+	.toc-item a.active {
+		color: var(--accent);
+		border-left-color: var(--accent);
+		font-weight: 600;
+	}
+
+	.toc-item.depth-3 {
+		padding-left: 0.75rem;
+	}
+
+	.toc-item.depth-3 a {
+		font-size: 0.8rem;
+	}
+
+	/* Scrollbar styling */
+	.toc::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	.toc::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.toc::-webkit-scrollbar-thumb {
+		background: rgb(var(--gray-light));
+		border-radius: 2px;
+	}
+</style>
+
+<script>
+	function initTOC() {
+		const tocLinks = document.querySelectorAll<HTMLAnchorElement>('.toc a[data-heading-slug]');
+		if (tocLinks.length === 0) return;
+
+		const headings = Array.from(tocLinks)
+			.map((link) => {
+				const slug = link.getAttribute('data-heading-slug');
+				return slug ? document.getElementById(slug) : null;
+			})
+			.filter(Boolean) as HTMLElement[];
+
+		if (headings.length === 0) return;
+
+		function setActiveHeading() {
+			const scrollTop = window.scrollY;
+			const windowHeight = window.innerHeight;
+			const docHeight = document.documentElement.scrollHeight;
+
+			// At bottom of page, highlight last heading
+			if (scrollTop + windowHeight >= docHeight - 50) {
+				tocLinks.forEach((l) => l.classList.remove('active'));
+				tocLinks[tocLinks.length - 1]?.classList.add('active');
+				return;
+			}
+
+			let currentId = '';
+			for (const heading of headings) {
+				if (heading.getBoundingClientRect().top <= 100) {
+					currentId = heading.id;
+				}
+			}
+
+			tocLinks.forEach((link) => {
+				const slug = link.getAttribute('data-heading-slug');
+				if (slug === currentId) {
+					link.classList.add('active');
+				} else {
+					link.classList.remove('active');
+				}
+			});
+		}
+
+		// Throttle scroll handler
+		let ticking = false;
+		window.addEventListener('scroll', () => {
+			if (!ticking) {
+				requestAnimationFrame(() => {
+					setActiveHeading();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}, { passive: true });
+
+		// Initial set
+		setActiveHeading();
+	}
+
+	// Run on page load
+	document.addEventListener('astro:page-load', initTOC);
+	// Also run immediately for SSR pages
+	initTOC();
+</script>
