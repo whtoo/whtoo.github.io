@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/></marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/></marker>
+    <marker id="arrowhead-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#eab308"/></marker>
+    <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a855f7"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="850" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="600" y="45" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="20" font-weight="bold">OpenCode SPC Plugin 架构图</text>
+
+  <!-- OpenCode Core -->
+  <rect x="400" y="70" width="400" height="70" rx="10" fill="#1e293b" stroke="#3b82f6" stroke-width="3"/>
+  <text x="600" y="100" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="16" font-weight="bold">OpenCode Core</text>
+  <text x="600" y="122" text-anchor="middle" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="12">消息生命周期管理</text>
+
+  <!-- Plugin System Box -->
+  <rect x="100" y="200" width="1000" height="100" rx="10" fill="#1e293b" stroke="#eab308" stroke-width="3"/>
+  <text x="600" y="230" text-anchor="middle" fill="#eab308" font-family="SF Mono, Consolas, monospace" font-size="16" font-weight="bold">Plugin System (@opencode-ai/plugin)</text>
+  <text x="200" y="280" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">ctx.client</text>
+  <text x="400" y="280" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">ctx.directory</text>
+  <text x="620" y="280" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">Hook Registry</text>
+  <text x="850" y="280" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">Event Bus</text>
+
+  <!-- SPC Plugin Box -->
+  <rect x="50" y="360" width="450" height="320" rx="10" fill="#1e293b" stroke="#22c55e" stroke-width="3"/>
+  <text x="275" y="395" text-anchor="middle" fill="#22c55e" font-family="SF Mono, Consolas, monospace" font-size="16" font-weight="bold">SPC Context Engine Plugin</text>
+
+  <!-- Hooks Box -->
+  <rect x="70" y="415" width="190" height="110" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="165" y="445" text-anchor="middle" fill="#22c55e" font-family="SF Mono, Consolas, monospace" font-size="13" font-weight="bold">Hooks</text>
+  <text x="90" y="470" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• messages.transform</text>
+  <text x="90" y="490" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• chat.message</text>
+  <text x="90" y="510" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• event</text>
+
+  <!-- Client API Box -->
+  <rect x="280" y="415" width="200" height="110" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+  <text x="380" y="445" text-anchor="middle" fill="#22c55e" font-family="SF Mono, Consolas, monospace" font-size="13" font-weight="bold">Client API</text>
+  <text x="300" y="470" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">session.messages()</text>
+  <text x="300" y="490" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">session.revert()</text>
+  <text x="300" y="510" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">tui.showToast()</text>
+
+  <!-- SPC Core Box -->
+  <rect x="70" y="545" width="410" height="115" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+  <text x="275" y="575" text-anchor="middle" fill="#a855f7" font-family="SF Mono, Consolas, monospace" font-size="13" font-weight="bold">SPC Core (算法层)</text>
+  <text x="90" y="605" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• assemble() — 方向对齐</text>
+  <text x="90" y="625" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• detectDrift() — 漂移检测</text>
+  <text x="90" y="645" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">• applyDER() — 负向过滤</text>
+
+  <!-- Hook Flow Box -->
+  <rect x="530" y="360" width="420" height="320" rx="10" fill="#1e293b" stroke="#a855f7" stroke-width="3"/>
+  <text x="740" y="395" text-anchor="middle" fill="#a855f7" font-family="SF Mono, Consolas, monospace" font-size="16" font-weight="bold">messages.transform Hook Flow</text>
+
+  <!-- Flow steps -->
+  <rect x="550" y="420" width="380" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="740" y="446" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="12">1. 读取消息历史 (session.messages)</text>
+
+  <line x1="740" y1="460" x2="740" y2="480" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="550" y="485" width="380" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="740" y="511" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="12">2. 提取 goal (最后一条 user message)</text>
+
+  <line x1="740" y1="525" x2="740" y2="545" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="550" y="550" width="380" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="740" y="576" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="12">3. SPC assemble(goal, messages)</text>
+
+  <line x1="740" y1="590" x2="740" y2="610" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <rect x="550" y="615" width="380" height="40" rx="6" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="740" y="641" text-anchor="middle" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="12">4. DER 过滤 + Drift 检测</text>
+
+  <!-- Arrows -->
+  <line x1="600" y1="140" x2="600" y2="195" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <text x="620" y="172" fill="#3b82f6" font-family="SF Mono, Consolas, monospace" font-size="10">Hook Call</text>
+
+  <line x1="275" y1="300" x2="275" y2="355" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="295" y="332" fill="#22c55e" font-family="SF Mono, Consolas, monospace" font-size="10">Plugin</text>
+
+  <line x1="600" y1="300" x2="600" y2="355" stroke="#eab308" stroke-width="2" marker-end="url(#arrowhead-yellow)"/>
+  <text x="615" y="332" fill="#eab308" font-family="SF Mono, Consolas, monospace" font-size="10">Events</text>
+
+  <!-- Connection to SPC Core -->
+  <line x1="275" y1="525" x2="275" y2="540" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowhead-purple)"/>
+
+  <!-- Legend -->
+  <rect x="900" y="720" width="280" height="100" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="920" y="750" fill="#f8fafc" font-family="SF Mono, Consolas, monospace" font-size="13" font-weight="bold">图例</text>
+  <line x1="920" y1="770" x2="960" y2="770" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <text x="970" y="775" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">Hook 调用</text>
+  <line x1="920" y1="795" x2="960" y2="795" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="970" y="800" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">Plugin 加载</text>
+  <line x1="920" y1="810" x2="960" y2="810" stroke="#eab308" stroke-width="2" marker-end="url(#arrowhead-yellow)"/>
+  <text x="970" y="815" fill="#94a3b8" font-family="SF Mono, Consolas, monospace" font-size="11">Event 事件</text>
+</svg>
