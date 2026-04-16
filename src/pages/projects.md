@@ -23,6 +23,29 @@ layout: ../layouts/Page.astro
 
 ## 附属实现
 
+### SPC-CTX Core SDK
+> **一句话定义**：SPC-CTX 核心引擎的跨平台 SDK，将上下文组装、压缩、筛选等核心能力抽象为可复用接口。
+
+**状态**: 🚀 **月底前开源**
+
+**目标平台**: OpenClaw plugin / OpenCode plugin / LangChain / Hermes
+
+---
+
+### SPC-CTX OpenClaw Plugin
+> **一句话定义**：将 SPC-CTX 接入 OpenClaw 运行框架的生产级插件实现。
+
+**状态**: 🧪 **生产测试中**
+
+---
+
+### SPC-CTX OpenCode Plugin
+> **一句话定义**：通过 OpenCode 的 `experimental.chat.messages.transform` 钩子实现的上下文引擎插件。
+
+**状态**: 🔨 **开发中**
+
+---
+
 ### SPC-CTX（Self-Paced Context Engine）
 > **一句话定义**：一个服务于 Autonomy Agent Continuous Context 的 Phase 感知语义上下文引擎。
 
@@ -43,22 +66,6 @@ SPC-CTX 是 CDA 范式的首个完整工程实现。它不做「更大」或「�
 - contextUsage 在 61.6% 时触发 AGGRESSIVE compact
 - 修复 QTS 在 compact 子集上运行后，assemble 阶段读取条目从 **1287 条降至 90 条**
 - 长任务中有效 token 稳定在 **28-40%** 区间
-
----
-
-### OpenClaw SPC plugin
-> **一句话定义**：将 SPC-CTX 接入 OpenClaw 运行框架的插件实现。
-
-OpenClaw SPC plugin 是主战场在 OpenClaw 生态中的具体落地形态。它负责：
-- 在 OpenClaw 的 Agent 会话生命周期中挂载 SPC-CTX 的 5 个 Phase
-- 提供 messageStore 到 SPC tokens 数据库的桥接
-- 支持热经验发现与上下文对齐评估的回调机制
-- 通过 ACPX 路由，在主会话、子 Agent、外部工具之间分配上下文相关任务
-
-**项目信息**：
-- **GitHub**: [whtoo](https://github.com/whtoo)（即将开源）
-- **技术栈**: TypeScript, Node.js, SQLite
-- **关联研究**: CDA 范式、SPC-CTX 引擎设计
 
 ---
 
@@ -122,8 +129,9 @@ OpenClaw SPC plugin 是主战场在 OpenClaw 生态中的具体落地形态。�
 
 2024-至今    Autonomy Agent Continuous Context
     ├── CDA 理论框架
-    ├── SPC-CTX 引擎（附属实现）
-    └── OpenClaw SPC plugin（附属实现）
+    ├── SPC-CTX Core SDK（月底开源）
+    ├── SPC-CTX OpenClaw Plugin（生产测试中）
+    └── SPC-CTX OpenCode Plugin（开发中）
 ```
 
 ---
